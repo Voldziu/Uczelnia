@@ -5,20 +5,39 @@ import java.util.WeakHashMap;
 public class Uczelnia {
 
     private  ArrayList<Kurs> Kursy = new ArrayList<Kurs>();
-    private  ArrayList<Student> Studenci = new ArrayList<Student>();
-    private  ArrayList<PracownikUczelni> Pracownicy = new ArrayList<PracownikUczelni>();
+    private ArrayList<Osoba> Osoby = new ArrayList<Osoba>();
 
 
-    public Uczelnia(ArrayList<Kurs> kursy, ArrayList<Student> studenci, ArrayList<PracownikUczelni> pracownicy) {
+    public Uczelnia(ArrayList<Kurs> kursy,ArrayList<Osoba> osoby) {
         Kursy = kursy;
-        Studenci = studenci;
-        Pracownicy = pracownicy;
+        Osoby = osoby;
+    }
+
+    public ArrayList<PracownikUczelni> GetPracownicy(){
+        ArrayList<PracownikUczelni> Pracownicy = new ArrayList<PracownikUczelni>();
+        for (int i = 0; i <Osoby.size() ; i++) {
+            Osoba obecnaOsoba = Osoby.get(i);
+            if(obecnaOsoba instanceof PracownikUczelni){
+                Pracownicy.add((PracownikUczelni) obecnaOsoba);
+            }
+
+        } return Pracownicy;
+    }
+    public ArrayList<Student> GetStudenci(){
+        ArrayList<Student> Studenci = new ArrayList<Student>();
+        for (int i = 0; i <Osoby.size(); i++) {
+            Osoba obecnaOsoba = Osoby.get(i);
+            if(obecnaOsoba instanceof Student){
+                Studenci.add((Student) obecnaOsoba);
+            }
+
+        } return Studenci;
     }
 
     public ArrayList<PracownikUczelni> WyszukajPracownika(String InPut){
         ArrayList<PracownikUczelni> Wyszukani = new ArrayList<PracownikUczelni>();
-        for (int i = 0; i <Pracownicy.size() ; i++) {
-            PracownikUczelni obecnyPracownik = Pracownicy.get(i);
+        for (int i = 0; i <GetPracownicy().size() ; i++) {
+            PracownikUczelni obecnyPracownik = GetPracownicy().get(i);
 
             if(InPut.equals(obecnyPracownik.getNazwisko()) || InPut.equals(obecnyPracownik.getImie())|| InPut.equals(obecnyPracownik.getStanowisko()) || (InPut.equals(String.valueOf(obecnyPracownik.getStazPracy())))  ||  (InPut.equals(String.valueOf(obecnyPracownik.getPensja())))){
                 Wyszukani.add(obecnyPracownik);
@@ -27,10 +46,10 @@ public class Uczelnia {
 
 
         } else if(obecnyPracownik instanceof PracownikBD && (InPut.equals(String.valueOf(((PracownikBD)obecnyPracownik).getLiczbaPublikacji()))) ) {
-                Wyszukani.add(obecnyPracownik);
+                Wyszukani.add((PracownikBD)obecnyPracownik);
 
             } else if (obecnyPracownik instanceof PracownikA && (InPut.equals(String.valueOf(((PracownikA)obecnyPracownik).getLiczbaNadgodzin())))) {
-                Wyszukani.add(obecnyPracownik);
+                Wyszukani.add((PracownikA)obecnyPracownik);
 
             }
 
@@ -52,8 +71,8 @@ public class Uczelnia {
 
     public  ArrayList<Student> WyszukajStudenta(String InPut){
         ArrayList<Student> Wyszukani = new ArrayList<Student>();
-        for (int i = 0; i <Studenci.size(); i++) {
-            Student obecnyStudent = Studenci.get(i);
+        for (int i = 0; i <GetStudenci().size(); i++) {
+            Student obecnyStudent = GetStudenci().get(i);
             if (InPut.equals(obecnyStudent.getNazwisko())  ||  InPut.equals(obecnyStudent.getImie())  ||  InPut.equals(String.valueOf(obecnyStudent.getIndex()))  ||  InPut.equals(String.valueOf(obecnyStudent.getRok()))){
                 Wyszukani.add(obecnyStudent);
             } else  {
