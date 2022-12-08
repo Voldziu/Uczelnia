@@ -59,7 +59,7 @@ public class Main {
         Pwr.Wyprintuj(Pwr.WyszukajKurs("Michalik"));
         Pwr.Wyprintuj(Pwr.WyszukajStudenta("Analiza"));
 
-        InferfejsUzytkownika
+
 
 
 
