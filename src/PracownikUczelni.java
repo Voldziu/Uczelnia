@@ -3,14 +3,14 @@ public abstract class PracownikUczelni extends  Osoba {
     //Skladowe
 
     private String Stanowisko;
-    private float StazPracy;
-    private float Pensja;
+    private double StazPracy;
+    private double Pensja;
 
 
     // Konstruktor
 
 
-    public PracownikUczelni(String imie, String nazwisko, String PESEL, int wiek, String plec, String stanowisko, float stazPracy, float pensja) {
+    public PracownikUczelni(String imie, String nazwisko, String PESEL, int wiek, String plec, String stanowisko, double stazPracy, double pensja) {
         super(imie, nazwisko, PESEL, wiek, plec);
         Stanowisko = stanowisko;
         StazPracy = stazPracy;
@@ -30,7 +30,7 @@ public abstract class PracownikUczelni extends  Osoba {
         Stanowisko = stanowisko;
     }
 
-    public float getStazPracy() {
+    public double getStazPracy() {
         return StazPracy;
     }
 
@@ -38,7 +38,7 @@ public abstract class PracownikUczelni extends  Osoba {
         StazPracy = stazPracy;
     }
 
-    public float getPensja() {
+    public double getPensja() {
         return Pensja;
     }
 

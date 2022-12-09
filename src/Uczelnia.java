@@ -6,11 +6,15 @@ public class Uczelnia {
 
     private  ArrayList<Kurs> Kursy = new ArrayList<Kurs>();
     private ArrayList<Osoba> Osoby = new ArrayList<Osoba>();
+    private ArrayList<Student> Studenci = new ArrayList<Student>();
+    private  ArrayList<PracownikUczelni> Pracownicy = new ArrayList<PracownikUczelni>();
 
 
     public Uczelnia(ArrayList<Kurs> kursy,ArrayList<Osoba> osoby) {
         Kursy = kursy;
         Osoby = osoby;
+        Studenci=GetStudenci();
+        Pracownicy = GetPracownicy();
     }
 
     public ArrayList<PracownikUczelni> GetPracownicy(){
@@ -36,8 +40,8 @@ public class Uczelnia {
 
     public ArrayList<PracownikUczelni> WyszukajPracownika(String InPut){
         ArrayList<PracownikUczelni> Wyszukani = new ArrayList<PracownikUczelni>();
-        for (int i = 0; i <GetPracownicy().size() ; i++) {
-            PracownikUczelni obecnyPracownik = GetPracownicy().get(i);
+        for (int i = 0; i <Pracownicy.size() ; i++) {
+            PracownikUczelni obecnyPracownik = Pracownicy.get(i);
 
             if(InPut.equals(obecnyPracownik.getNazwisko()) || InPut.equals(obecnyPracownik.getImie())|| InPut.equals(obecnyPracownik.getStanowisko()) || (InPut.equals(String.valueOf(obecnyPracownik.getStazPracy())))  ||  (InPut.equals(String.valueOf(obecnyPracownik.getPensja())))){
                 Wyszukani.add(obecnyPracownik);
@@ -71,8 +75,8 @@ public class Uczelnia {
 
     public  ArrayList<Student> WyszukajStudenta(String InPut){
         ArrayList<Student> Wyszukani = new ArrayList<Student>();
-        for (int i = 0; i <GetStudenci().size(); i++) {
-            Student obecnyStudent = GetStudenci().get(i);
+        for (int i = 0; i <Studenci.size(); i++) {
+            Student obecnyStudent = Studenci.get(i);
             if (InPut.equals(obecnyStudent.getNazwisko())  ||  InPut.equals(obecnyStudent.getImie())  ||  InPut.equals(String.valueOf(obecnyStudent.getIndex()))  ||  InPut.equals(String.valueOf(obecnyStudent.getRok()))){
                 Wyszukani.add(obecnyStudent);
             } else  {
@@ -88,6 +92,30 @@ public class Uczelnia {
 
         } return Wyszukani;
     }
+    public void DodajPracownikaBD(PracownikBD p){
+        Pracownicy.add(p);
+        setPracownicy(Pracownicy);
+
+    }
+    public void DodajPracownikaA(PracownikA p){
+        Pracownicy.add(p);
+        setPracownicy(Pracownicy);
+
+    }
+    public void DodajStudenta(Student s){
+        Studenci.add(s);
+        setStudenci(Studenci);
+
+
+
+    }
+    public void DodajKurs(Kurs k){
+        Kursy.add(k);
+        setKursy(Kursy);
+
+
+
+    }
 
     public  void Wyprintuj(ArrayList Lista){
         for (int i = 0; i <Lista.size() ; i++) {
@@ -100,10 +128,37 @@ public class Uczelnia {
 
     }
 
+    //GETTERY I SETTERY
 
+    public ArrayList<Kurs> getKursy() {
+        return Kursy;
+    }
 
+    public void setKursy(ArrayList<Kurs> kursy) {
+        Kursy = kursy;
+    }
 
+    public ArrayList<Osoba> getOsoby() {
+        return Osoby;
+    }
 
+    public void setOsoby(ArrayList<Osoba> osoby) {
+        Osoby = osoby;
+    }
 
+    public ArrayList<Student> getStudenci() {
+        return Studenci;
+    }
 
+    public void setStudenci(ArrayList<Student> studenci) {
+        Studenci = studenci;
+    }
+
+    public ArrayList<PracownikUczelni> getPracownicy() {
+        return Pracownicy;
+    }
+
+    public void setPracownicy(ArrayList<PracownikUczelni> pracownicy) {
+        Pracownicy = pracownicy;
+    }
 }
