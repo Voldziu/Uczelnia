@@ -1,6 +1,11 @@
-public abstract class  Osoba {
+import java.io.Serial;
+import java.io.Serializable;
+
+public abstract class  Osoba  implements Serializable {
 
     //Skladowe
+    @Serial
+    private static final long serialVersionUID = 5567566049324461550L;
 
     private  String Imie;
     private  String Nazwisko;
@@ -65,12 +70,7 @@ public abstract class  Osoba {
 
     @Override
     public String toString() {
-        return "{" +
-                "Imie='" + Imie + '\'' +
-                ", Nazwisko='" + Nazwisko + '\'' +
-                ", PESEL='" + PESEL + '\'' +
-                ", Wiek=" + Wiek +
-                ", Plec='" + Plec + '\''
-                ;
+        return (Imie + "\t" + Nazwisko + "\t" + PESEL + "\t" + Wiek + "\t" + Plec );
+
     }
 }

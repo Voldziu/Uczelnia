@@ -48,10 +48,10 @@ public abstract class PracownikUczelni extends  Osoba {
 
     @Override
     public String toString() {
-        return "Pracownik" + super.toString()+
-                ", Stanowisko='" + Stanowisko + '\'' +
-                ", StazPracy=" + StazPracy +
-                ", Pensja=" + Pensja;
+        return ( super.toString()+ "\t"+
+               Stanowisko +  "\t"+
+                StazPracy + "\t"+
+                Pensja + "\t");
 
     }
 }

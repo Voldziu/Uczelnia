@@ -1,4 +1,8 @@
-public class Kurs {
+import java.io.Serializable;
+
+public class Kurs implements Serializable {
+
+    private static final long serialVersionUID = 5567566049323461550L;
 
     //Skladowe
     private  String NazwaKursu;
@@ -45,10 +49,6 @@ public class Kurs {
 
     @Override
     public String toString() {
-        return "Kurs {" +
-                " NazwaKursu='" + NazwaKursu + '\'' +
-                ", Prowadzacy=" + Prowadzacy +
-                ", ECTS=" + ECTS +
-                " }";
+        return (NazwaKursu +"\t"+ Prowadzacy +"\t"+ ECTS + "\t");
     }
 }

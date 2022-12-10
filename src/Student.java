@@ -1,9 +1,12 @@
+import java.io.Serializable;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
-public class Student extends Osoba{
+public class Student extends Osoba  {
 
     //Skladowe
+
+
 
     private int Index;
     private int Rok;
@@ -101,15 +104,15 @@ public class Student extends Osoba{
 
     @Override
     public String toString() {
-        return "Student " + super.toString()+
-                ", Index=" + Index +
-                ", Rok=" + Rok +
-                ", ListaKursow=" + ListaKursow +
-                ", CzyErasmus=" + CzyErasmus +
-                ", CzyPierwszyStopien=" + CzyPierwszyStopien +
-                ", CzyDrugiStopien=" + CzyDrugiStopien +
-                ", CzyStacjonarne=" + CzyStacjonarne +
-                ", CzyNiestacjonarne=" + CzyNiestacjonarne +
-                '}';
+        return ( super.toString()+ "\t"+
+                  Index + "\t"+
+                 Rok + "\t"+
+                 ListaKursow +"\t"+
+                 CzyErasmus + "\t"+
+                 CzyPierwszyStopien +"\t"+
+                 CzyDrugiStopien + "\t"+
+                CzyStacjonarne + "\t"+
+                CzyNiestacjonarne + "\t"
+                );
     }
 }

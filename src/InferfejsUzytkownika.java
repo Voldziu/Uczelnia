@@ -39,7 +39,10 @@ public class InferfejsUzytkownika {
 
     }
 
-    public void Wybor(){
+    public void Graj(){
+
+        Dane.odczytaj();
+
         boolean GameLoop = true;
 
         while(GameLoop){
@@ -51,13 +54,16 @@ public class InferfejsUzytkownika {
                 case 101:
                     Dane.DodajStudenta(StworzStudenta());
 
+
                     break;
                 case 102:
                     Dane.DodajPracownikaA(StworzPracownikaA());
 
+
                     break;
                 case 103:
                     Dane.DodajPracownikaBD(StworzPracownikaBD());
+
 
                     break;
                 case 104:
@@ -103,6 +109,7 @@ public class InferfejsUzytkownika {
             int decyzja = scan.nextInt();
             if (decyzja==2){
                 GameLoop=false;
+                Dane.zapisz();
             }
 
 

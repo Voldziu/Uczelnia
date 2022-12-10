@@ -24,6 +24,6 @@ public class PracownikBD extends  PracownikUczelni{
 
     @Override
     public String toString() {
-        return  super.toString() +", LiczbaPublikacji=" +LiczbaPublikacji + "}";
+        return  (super.toString() + LiczbaPublikacji + "\t");
     }
 }

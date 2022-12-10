@@ -1,3 +1,4 @@
+import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
@@ -8,6 +9,12 @@ public class Uczelnia {
     private ArrayList<Osoba> Osoby = new ArrayList<Osoba>();
     private ArrayList<Student> Studenci = new ArrayList<Student>();
     private  ArrayList<PracownikUczelni> Pracownicy = new ArrayList<PracownikUczelni>();
+
+
+
+    private static ArrayList<Osoba>  OsobyOdczyt= null;
+    private  static  ArrayList<Kurs>  KursyOdczyt = null;
+
 
 
     public Uczelnia(ArrayList<Kurs> kursy,ArrayList<Osoba> osoby) {
@@ -93,18 +100,19 @@ public class Uczelnia {
         } return Wyszukani;
     }
     public void DodajPracownikaBD(PracownikBD p){
-        Pracownicy.add(p);
-        setPracownicy(Pracownicy);
+       Osoby.add(p);
+        setPracownicy(GetPracownicy());
 
     }
     public void DodajPracownikaA(PracownikA p){
-        Pracownicy.add(p);
-        setPracownicy(Pracownicy);
+        Osoby.add(p);
+        setPracownicy(GetPracownicy());
 
     }
     public void DodajStudenta(Student s){
-        Studenci.add(s);
-        setStudenci(Studenci);
+        Osoby.add(s);
+        setStudenci(GetStudenci());
+
 
 
 
@@ -127,6 +135,60 @@ public class Uczelnia {
 
 
     }
+
+    // ZAPISYWANIE
+
+    public void zapiszPuste(){
+        try (ObjectOutputStream zapisz = new ObjectOutputStream(new FileOutputStream("BazaDanych.ser"))){
+            zapisz.writeObject(new ArrayList<Kurs>());
+            zapisz.writeObject(new ArrayList<Student>());
+            zapisz.writeObject(new ArrayList<PracownikUczelni>());
+
+
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+    public void zapisz(){
+        try (ObjectOutputStream zapisz = new ObjectOutputStream(new FileOutputStream("BazaDanych.ser"))){
+            zapisz.writeObject(Kursy);
+            zapisz.writeObject(Osoby);
+
+
+
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+
+
+    }
+
+    public  void odczytaj(){
+        try(ObjectInputStream odczytaj = new ObjectInputStream(new FileInputStream("BazaDanych.ser"))){
+
+            Object ob1 = odczytaj.readObject();
+            Object ob2 = odczytaj.readObject();
+
+
+            KursyOdczyt = (ArrayList<Kurs>) ob1;
+            OsobyOdczyt = (ArrayList<Osoba>) ob2;
+
+            setKursy(KursyOdczyt);
+            setOsoby(OsobyOdczyt);
+            setPracownicy(GetPracownicy());
+            setStudenci(GetStudenci());
+
+        } catch (IOException | ClassNotFoundException e){
+            zapiszPuste();
+        }
+
+    }
+
 
     //GETTERY I SETTERY
 

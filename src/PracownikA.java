@@ -32,7 +32,7 @@ public class PracownikA extends  PracownikUczelni{
 
 
     public String toString(){
-        return super.toString()+", LiczbaNadgodzin= "+LiczbaNadgodzin+ "}";
+        return (super.toString()+ LiczbaNadgodzin +"\t");
 
     }
 }
