@@ -141,8 +141,7 @@ public class Uczelnia {
     public void zapiszPuste(){
         try (ObjectOutputStream zapisz = new ObjectOutputStream(new FileOutputStream("BazaDanych.ser"))){
             zapisz.writeObject(new ArrayList<Kurs>());
-            zapisz.writeObject(new ArrayList<Student>());
-            zapisz.writeObject(new ArrayList<PracownikUczelni>());
+            zapisz.writeObject(new ArrayList<Osoba>());
 
 
 
