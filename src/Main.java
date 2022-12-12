@@ -46,7 +46,7 @@ public class Main {
      //   Student Maciek = new Student("Maciek","Dudziak","31321",19,"M",242422,2,new ArrayList<Kurs>(Arrays.asList(Analiza,Algebra)),false,true,false,true,false);
        // Osoby.add(Maciek);
 
-        Uczelnia Pwr = new Uczelnia(Kursy,Osoby);
+        Uczelnia Pwr = new Uczelnia();
         InferfejsUzytkownika gui = new InferfejsUzytkownika(Pwr);
         gui.Graj();
 

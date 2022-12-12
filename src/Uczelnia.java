@@ -17,9 +17,9 @@ public class Uczelnia {
 
 
 
-    public Uczelnia(ArrayList<Kurs> kursy,ArrayList<Osoba> osoby) {
-        Kursy = kursy;
-        Osoby = osoby;
+    public Uczelnia() {
+        Kursy = new ArrayList<Kurs>();
+        Osoby = new ArrayList<Osoba>();
         Studenci=GetStudenci();
         Pracownicy = GetPracownicy();
     }
