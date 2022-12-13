@@ -6,8 +6,8 @@ public class PracownikBD extends  PracownikUczelni{
 
     //Konstruktor
 
-    public PracownikBD(String imie, String nazwisko, String PESEL, int wiek, String plec, String stanowisko, double stazPracy, double pensja, int liczbaPublikacji) {
-        super(imie, nazwisko, PESEL, wiek, plec, stanowisko, stazPracy, pensja);
+    public PracownikBD(int ID,String imie, String nazwisko, String PESEL, int wiek, String plec, String stanowisko, double stazPracy, double pensja, int liczbaPublikacji) {
+        super(ID,imie, nazwisko, PESEL, wiek, plec, stanowisko, stazPracy, pensja);
         LiczbaPublikacji = liczbaPublikacji;
     }
 

@@ -6,7 +6,7 @@ public abstract class  Osoba  implements Serializable {
     //Skladowe
     @Serial
     private static final long serialVersionUID = 5567566049324461550L;
-
+    private int ID;
     private  String Imie;
     private  String Nazwisko;
     private  String PESEL;
@@ -15,7 +15,8 @@ public abstract class  Osoba  implements Serializable {
 
     //Konstruktor
 
-    public Osoba(String imie, String nazwisko, String PESEL, int wiek, String plec) {
+    public Osoba(int ID,String imie, String nazwisko, String PESEL, int wiek, String plec) {
+        this.ID= ID;
         Imie = imie;
         Nazwisko = nazwisko;
         this.PESEL = PESEL;
@@ -27,6 +28,13 @@ public abstract class  Osoba  implements Serializable {
     //Gettery Settery
 
 
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 
     public String getImie() {
         return Imie;
@@ -70,7 +78,7 @@ public abstract class  Osoba  implements Serializable {
 
     @Override
     public String toString() {
-        return (Imie + "\t" + Nazwisko + "\t" + PESEL + "\t" + Wiek + "\t" + Plec );
+        return (ID +"\t"+Imie + "\t" + Nazwisko + "\t" + PESEL + "\t" + Wiek + "\t" + Plec );
 
     }
 }
