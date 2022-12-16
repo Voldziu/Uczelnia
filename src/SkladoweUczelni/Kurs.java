@@ -1,3 +1,5 @@
+package SkladoweUczelni;
+
 import java.io.Serializable;
 
 public class Kurs implements Serializable {

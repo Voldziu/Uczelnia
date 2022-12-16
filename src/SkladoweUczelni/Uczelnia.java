@@ -1,8 +1,10 @@
+package SkladoweUczelni;
+
+import SkladoweUczelni.*;
+
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.WeakHashMap;
 
 public class Uczelnia {
 
@@ -73,13 +75,16 @@ public class Uczelnia {
         }
     public PracownikUczelni WyszukajPracownikaID(String InPut){
         PracownikUczelni szukany;
+        PracownikUczelni wynik=null;
         for (int i = 0; i <Pracownicy.size() ; i++) {
             szukany = Pracownicy.get(i);
-            if (String.valueOf(szukany.getID())==InPut){
-                return szukany;
+            if (String.valueOf(szukany.getID()).equals(InPut)){
+                wynik= szukany;
+
+
             }
 
-        }  return null;
+        }  return wynik;
 
     }
 
@@ -96,7 +101,7 @@ public class Uczelnia {
         Kurs szukany;
         for (int i = 0; i <Kursy.size() ; i++) {
             szukany = Kursy.get(i);
-            if (String.valueOf(szukany.getID())==InPut){
+            if (String.valueOf(szukany.getID()).equals(InPut)){
                 return szukany;
             }
 
@@ -128,7 +133,7 @@ public class Uczelnia {
         Student szukany;
         for (int i = 0; i <Studenci.size() ; i++) {
             szukany = Studenci.get(i);
-            if (String.valueOf(szukany.getID())==InPut){
+            if (String.valueOf(szukany.getID()).equals(InPut)){
                 return szukany;
             }
 

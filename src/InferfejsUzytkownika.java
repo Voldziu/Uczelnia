@@ -1,7 +1,10 @@
-import java.net.SocketTimeoutException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import Komparatory.KomparatorECTSNazwisko;
+import Komparatory.KomparatorNazwisko;
+import Komparatory.KomparatorNazwiskoImie;
+import Komparatory.KomparatorNazwiskoWiek;
+import SkladoweUczelni.*;
 
+import java.util.*;
 
 
 public class InferfejsUzytkownika {
@@ -29,18 +32,21 @@ public class InferfejsUzytkownika {
         System.out.println("--------------MENU--------------\n");
         System.out.println("Wybierz co chcesz zrobić:");
         System.out.println("Dopisz: ");
-        System.out.println("\t 101 --- Dopisz studenta" );
+        System.out.println("\t 101 --- Dopisz Studenta" );
         System.out.println("\t 102 --- Dopisz Pracownika Administracji");
         System.out.println("\t 103 --- Dopisz Pracownika Badawczo-Dydaktycznego");
         System.out.println("\t 104 --- Dopisz Kurs");
         System.out.println("Wyprintuj wszystkich: ");
+
         System.out.println("\t 201 --- Wyprintuj Studentów");
         System.out.println("\t 202 --- Wyprintuj Pracowników");
         System.out.println("\t 203 --- Wyprintuj Kursy");
+        System.out.println("\t 204 --- Wyprintuj Osoby");
         System.out.println("Wyszukaj:");
         System.out.println("\t 301 --- Wyszukaj Studenta");
         System.out.println("\t 302 --- Wyszukaj Pracownika");
         System.out.println("\t 303 --- Wyszukaj Kurs");
+
 
 
 
@@ -93,7 +99,51 @@ public class InferfejsUzytkownika {
 
 
                 case 203:
+                    System.out.println("Podaj Kryterium sortowania: ");
+                    System.out.println("\t 1 --- ECTS+/Nazwisko+");
+                    System.out.println("\t 2 --- Brak");
+                    int sortKursswitch = scan.nextInt();
+                    switch (sortKursswitch){
+                        case 1:
+                            Collections.sort(Dane.getKursy(),new KomparatorECTSNazwisko());
+                            break;
+                        case 2:
+                            break;
+                        default:
+                            System.out.println("Coś poszło nie tak, (sortowanie kursy)");
+
+                    }
+
                     Dane.Wyprintuj(Dane.getKursy());
+                    break;
+                case 204:
+                    System.out.println("Podaj kryterium sortowania: ");
+                    System.out.println("\t 1 --- Nazwisko+");
+                    System.out.println("\t 2 --- Nazwisko+/Imie+");
+                    System.out.println("\t 3 --- Nazwisko+/Wiek-");
+                    System.out.println("\t 4 --- Brak");
+                    int sortOsobaswitch = scan.nextInt();
+                    switch (sortOsobaswitch){
+                        case 1:
+                            Collections.sort(Dane.getOsoby(),new KomparatorNazwisko());
+                            break;
+                        case 2:
+                            Collections.sort(Dane.getOsoby(),new KomparatorNazwiskoImie());
+                            break;
+                        case 3:
+                            Collections.sort(Dane.getOsoby(),new KomparatorNazwiskoWiek());
+                         break;
+                        case 4:
+                        break;
+                        default:
+                            System.out.println("Coś poszło nietak, (sortowanie)");
+                    }
+
+
+
+
+
+                    Dane.Wyprintuj(Dane.getOsoby());
                     break;
 
 
@@ -181,7 +231,7 @@ public class InferfejsUzytkownika {
 
         }
 
-    public  PracownikA StworzPracownikaA(){
+    public PracownikA StworzPracownikaA(){
         System.out.println("ID: ");
         int ID = scan.nextInt();
         while (Dane.getPracownicyID().contains(ID)) {
@@ -242,10 +292,11 @@ public class InferfejsUzytkownika {
                     break;
                 case 2:
                     Dane.Wyprintuj(Dane.getPracownicy());
-                    System.out.println("Wprowadź ID prowadzącego");
+                    System.out.println("Wprowadź ID prowadzącego:");
                     String IDPro=scan.next();
                     try{
-                        Prowadzacy = (PracownikBD) Dane.WyszukajPracownikaID(IDPro);
+                        Prowadzacy = ((PracownikBD) Dane.WyszukajPracownikaID(IDPro));
+
                     } catch (Exception e){
                         System.out.println("Nie ma prowadzącego o takim ID");
                     }
@@ -268,7 +319,7 @@ public class InferfejsUzytkownika {
             return new Kurs(ID,nazwaKursu,Prowadzacy,ECTS);
         } else{
             System.out.println("Istnieje kurs o takim ID (" + ID+")");
-            Dane.Wyprintuj(Dane.WyszukajKurs(String.valueOf(ID))); //Poprawic, aby dzialalo po ID
+            System.out.println((Dane.WyszukajKursID(String.valueOf(ID))));
             return null;
         }
 
@@ -362,5 +413,10 @@ public class InferfejsUzytkownika {
 
 
     }
+
+//    public void Posortuj(ArrayList l, Comparator c){
+//        Collections.sort(l,c);
+//
+//    }
 
 }

@@ -1,8 +1,8 @@
-import java.lang.reflect.Array;
-import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import SkladoweUczelni.Uczelnia;
+import Komparatory.*;
+
+import java.util.Collections;
+import java.util.List;
 
 public class Main {
 
@@ -19,10 +19,13 @@ public class Main {
         InferfejsUzytkownika gui = new InferfejsUzytkownika(Pwr);
         try {
             gui.Graj();
+            gui.getDane().Wyprintuj(gui.getDane().getOsoby());
         } catch (Exception e){
             e.printStackTrace();
             gui.getDane().zapisz();
         }
+
+
 
 
 

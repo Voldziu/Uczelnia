@@ -1,3 +1,5 @@
+package SkladoweUczelni;
+
 import java.io.Serial;
 import java.io.Serializable;
 

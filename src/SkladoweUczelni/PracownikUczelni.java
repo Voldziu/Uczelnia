@@ -1,4 +1,6 @@
-public abstract class PracownikUczelni extends  Osoba {
+package SkladoweUczelni;
+
+public abstract class PracownikUczelni extends Osoba {
 
     //Skladowe
 

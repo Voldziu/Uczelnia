@@ -1,4 +1,6 @@
-public class PracownikBD extends  PracownikUczelni{
+package SkladoweUczelni;
+
+public class PracownikBD extends PracownikUczelni {
 
     //Skladowe
 
