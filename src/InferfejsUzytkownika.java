@@ -46,6 +46,10 @@ public class InferfejsUzytkownika {
         System.out.println("\t 301 --- Wyszukaj Studenta");
         System.out.println("\t 302 --- Wyszukaj Pracownika");
         System.out.println("\t 303 --- Wyszukaj Kurs");
+        System.out.println("Usun: (Uwazaj)");
+        System.out.println("\t 401 --- Usun Studenta");
+        System.out.println("\t 402 --- Usun Pracownika");
+        System.out.println("\t 403 --- Usun Kurs");
 
 
 
@@ -148,13 +152,7 @@ public class InferfejsUzytkownika {
 
 
                 case 301:
-                    System.out.println("Wpisz szukane: ");
-                    ArrayList<Student> szukaniS = Dane.WyszukajStudenta(scan.next());
-                    Dane.Wyprintuj(szukaniS);
-                    if(szukaniS.isEmpty()){
-                        System.out.println("Brak");
 
-                    }
                     break;
                 case 302:
                     System.out.println("Wpisz szukane: ");
@@ -174,6 +172,82 @@ public class InferfejsUzytkownika {
 
                     }
                     break;
+                case 401:
+                    System.out.println("Wpisz szukane: ");
+                    ArrayList<Student> UsuwaniS = Dane.WyszukajStudenta(scan.next());
+                    System.out.println("Usunąłeś poniższych studentów: ");
+                    Dane.Wyprintuj(UsuwaniS);
+                    if(UsuwaniS.isEmpty()){
+                        System.out.println("Brak");
+                    }
+                    Dane.getOsoby().removeAll(UsuwaniS);
+                    Dane.setOsoby(Dane.getOsoby());
+                    Dane.getStudenci().removeAll(UsuwaniS);
+                    Dane.setStudenci(Dane.getStudenci());
+
+
+
+                    break;
+                case 402:
+                    System.out.println("Wpisz szukane: ");
+                    ArrayList<PracownikUczelni> UsuwaniP = Dane.WyszukajPracownika(scan.next());
+                    System.out.println("Usunąłeś poniższych pracowników: ");
+                    Dane.Wyprintuj(UsuwaniP);
+                    if(UsuwaniP.isEmpty()){
+                        System.out.println("Brak");
+                    }
+                    Dane.getOsoby().removeAll(UsuwaniP);
+                    Dane.setOsoby(Dane.getOsoby());
+                    Dane.getPracownicy().removeAll(UsuwaniP);
+                    Dane.setPracownicy(Dane.getPracownicy());
+
+                    ArrayList<Kurs> UsuwaneKursy= new ArrayList<Kurs>();
+                    for (int i = 0; i <UsuwaniP.size() ; i++) {
+                        for (int j = 0; j <Dane.getKursy().size() ; j++) {
+                            if (Objects.equals(UsuwaniP.get(i), Dane.getKursy().get(j).getProwadzacy())){
+                                UsuwaneKursy.add(Dane.getKursy().get(j));
+                            }
+
+
+                        }
+
+                    }
+                    Dane.getKursy().removeAll(UsuwaneKursy);
+                    Dane.setKursy(Dane.getKursy());
+                    for (int i = 0; i <Dane.getStudenci().size() ; i++) {
+                        Student obecnyStudent = Dane.getStudenci().get(i);
+                        obecnyStudent.getListaKursow().removeAll(UsuwaneKursy);
+                        obecnyStudent.setListaKursow(obecnyStudent.getListaKursow());
+
+
+
+
+                    }
+
+
+
+
+                    break;
+                case 403:
+                    System.out.println("Wpisz szukane: ");
+                    ArrayList<Kurs> UsuwaniK = Dane.WyszukajKurs(scan.next());
+                    System.out.println("Usunąłeś poniższe kursy: ");
+                    Dane.Wyprintuj(UsuwaniK);
+                    if(UsuwaniK.isEmpty()){
+                        System.out.println("Brak");
+                    }
+
+                    Dane.getKursy().removeAll(UsuwaniK);
+                    Dane.setKursy(Dane.getKursy());
+
+
+                    for (int i = 0; i <Dane.getStudenci().size() ; i++) {
+                        Student obecnyStudent = Dane.getStudenci().get(i);
+                        obecnyStudent.getListaKursow().removeAll(UsuwaniK);
+                        obecnyStudent.setListaKursow(obecnyStudent.getListaKursow());
+                    }
+                    break;
+
                 default:
                     System.out.println("Coś poszło nie tak......., wpisz dobre wartości");
 

@@ -19,7 +19,7 @@ public class Main {
         InferfejsUzytkownika gui = new InferfejsUzytkownika(Pwr);
         try {
             gui.Graj();
-            gui.getDane().Wyprintuj(gui.getDane().getOsoby());
+
         } catch (Exception e){
             e.printStackTrace();
             gui.getDane().zapisz();

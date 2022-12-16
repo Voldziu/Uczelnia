@@ -55,7 +55,7 @@ public class Uczelnia {
         for (int i = 0; i <Pracownicy.size() ; i++) {
             PracownikUczelni obecnyPracownik = Pracownicy.get(i);
 
-            if(InPut.equals(String.valueOf(obecnyPracownik.getID()))|| InPut.equals(obecnyPracownik.getNazwisko()) || InPut.equals(obecnyPracownik.getImie())|| InPut.equals(obecnyPracownik.getStanowisko()) || (InPut.equals(String.valueOf(obecnyPracownik.getStazPracy())))  ||  (InPut.equals(String.valueOf(obecnyPracownik.getPensja())))){
+            if( InPut.equals(obecnyPracownik.getNazwisko()) || InPut.equals(obecnyPracownik.getImie())|| InPut.equals(obecnyPracownik.getStanowisko()) || (InPut.equals(String.valueOf(obecnyPracownik.getStazPracy())))  ||  (InPut.equals(String.valueOf(obecnyPracownik.getPensja())))){
                 Wyszukani.add(obecnyPracownik);
 
 
@@ -92,7 +92,7 @@ public class Uczelnia {
         ArrayList<Kurs> Wyszukane = new ArrayList<Kurs>();
         for (int i = 0; i <Kursy.size() ; i++) {
             Kurs obecnyKurs = Kursy.get(i);
-            if(InPut.equals(String.valueOf(obecnyKurs.getID()))|| InPut.equals(String.valueOf(obecnyKurs.getECTS())) || InPut.equals(obecnyKurs.getNazwaKursu()) || InPut.equals(obecnyKurs.getProwadzacy().getNazwisko()) ||  InPut.equals(obecnyKurs.getProwadzacy().getImie()) ){
+            if( InPut.equals(String.valueOf(obecnyKurs.getECTS())) || InPut.equals(obecnyKurs.getNazwaKursu()) || InPut.equals(obecnyKurs.getProwadzacy().getNazwisko()) ||  InPut.equals(obecnyKurs.getProwadzacy().getImie()) ){
                 Wyszukane.add(obecnyKurs);
             }
         } return Wyszukane;
@@ -114,7 +114,7 @@ public class Uczelnia {
         ArrayList<Student> Wyszukani = new ArrayList<Student>();
         for (int i = 0; i <Studenci.size(); i++) {
             Student obecnyStudent = Studenci.get(i);
-            if (InPut.equals(String.valueOf(obecnyStudent.getID())) || InPut.equals(obecnyStudent.getNazwisko())  ||  InPut.equals(obecnyStudent.getImie())  ||  InPut.equals(String.valueOf(obecnyStudent.getIndex()))  ||  InPut.equals(String.valueOf(obecnyStudent.getRok()))){
+            if ( InPut.equals(obecnyStudent.getNazwisko())  ||  InPut.equals(obecnyStudent.getImie())  ||  InPut.equals(String.valueOf(obecnyStudent.getIndex()))  ||  InPut.equals(String.valueOf(obecnyStudent.getRok()))){
                 Wyszukani.add(obecnyStudent);
             } else  {
                 for (int j = 0; j <obecnyStudent.getListaKursow().size() ; j++) {
@@ -129,6 +129,19 @@ public class Uczelnia {
 
         } return Wyszukani;
     }
+    // Metoda ta będzie używana do usuwania
+
+
+//    public  ArrayList<Student> WyszukajStudentaBezKursow(String InPut){
+//        ArrayList<Student> Wyszukani = new ArrayList<Student>();
+//        for (int i = 0; i <Studenci.size(); i++) {
+//            Student obecnyStudent = Studenci.get(i);
+//            if ( InPut.equals(obecnyStudent.getNazwisko())  ||  InPut.equals(obecnyStudent.getImie())  ||  InPut.equals(String.valueOf(obecnyStudent.getIndex()))  ||  InPut.equals(String.valueOf(obecnyStudent.getRok()))){
+//                Wyszukani.add(obecnyStudent);
+//            }
+//
+//        } return Wyszukani;
+//    }
     public Student WyszukajStudentaID(String InPut){
         Student szukany;
         for (int i = 0; i <Studenci.size() ; i++) {
