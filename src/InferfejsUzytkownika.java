@@ -3,6 +3,7 @@ import Komparatory.KomparatorNazwisko;
 import Komparatory.KomparatorNazwiskoImie;
 import Komparatory.KomparatorNazwiskoWiek;
 import SkladoweUczelni.*;
+import Strategia.PodwyzkaInterface;
 
 import java.util.*;
 
@@ -10,6 +11,7 @@ import java.util.*;
 public class InferfejsUzytkownika {
     private Uczelnia Dane;
     private Scanner scan = new Scanner(System.in);
+    protected PodwyzkaInterface RaiseInter;
 
 
 
@@ -50,6 +52,9 @@ public class InferfejsUzytkownika {
         System.out.println("\t 401 --- Usun Studenta");
         System.out.println("\t 402 --- Usun Pracownika");
         System.out.println("\t 403 --- Usun Kurs");
+        System.out.println("Daj podwyżkę: ");
+        System.out.println("\t 501 --- Daj podwyżkę Pracownikowi");
+
 
 
 
@@ -247,6 +252,27 @@ public class InferfejsUzytkownika {
                         obecnyStudent.setListaKursow(obecnyStudent.getListaKursow());
                     }
                     break;
+                case 501:
+                    System.out.println("W jaki sposób chcesz dać podwyżkę?");
+                    System.out.println("\t 1 --- Procentowo");
+                    System.out.println("\t 2 --- Stale");
+                    int podwyzkaScan = scan.nextInt();
+
+                    Dane.wykonajStrategie(podwyzkaScan);
+                    Dane.Wyprintuj(Dane.getPracownicy());
+
+                    System.out.println("Komu chcesz dać podwyżkę? Podaj ID: ");
+                    String IDPodwyzka = scan.next();
+
+
+                    try{
+                        Dane.getRaiseInter().SposobNaPodwyzke(Dane.WyszukajPracownikaID(IDPodwyzka));
+                    } catch (Exception e){
+                        System.out.println("Niepoprawne ID");
+                    }
+
+                    break;
+
 
                 default:
                     System.out.println("Coś poszło nie tak......., wpisz dobre wartości");
@@ -488,9 +514,6 @@ public class InferfejsUzytkownika {
 
     }
 
-//    public void Posortuj(ArrayList l, Comparator c){
-//        Collections.sort(l,c);
-//
-//    }
+
 
 }

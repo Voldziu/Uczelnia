@@ -5,6 +5,7 @@ import SkladoweUczelni.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import Strategia.*;
 
 public class Uczelnia {
 
@@ -14,6 +15,12 @@ public class Uczelnia {
     private  ArrayList<PracownikUczelni> Pracownicy = new ArrayList<PracownikUczelni>();
     private ArrayList<String> StanowiskaBD = new ArrayList<>(Arrays.asList("Asystent", "Adiunkt", "ProfesorNadzwyczajny", "ProfesorZwyczajny", "Wykladowca"));
     private ArrayList<String> StanowiskaA = new ArrayList<>(Arrays.asList("Referent","Specjalista","StarszySpecjalista"));
+
+
+    protected PodwyzkaInterface RaiseInter;
+
+
+
 
 
 
@@ -242,8 +249,35 @@ public class Uczelnia {
 
     }
 
+    // STRATEGIA
+
+    public void wykonajStrategie(int nr_Strategii){
+        switch (nr_Strategii){
+            case 1:
+                RaiseInter = new PodwyzkaSposob1();
+                break;
+            case 2:
+                RaiseInter = new PodwyzkaSposob2();
+
+                break;
+        }
+    }
+
+
+
+
+
 
     //GETTERY I SETTERY
+
+
+    public PodwyzkaInterface getRaiseInter() {
+        return RaiseInter;
+    }
+
+    public void setRaiseInter(PodwyzkaInterface raiseInter) {
+        RaiseInter = raiseInter;
+    }
 
     public ArrayList<Kurs> getKursy() {
         return Kursy;
