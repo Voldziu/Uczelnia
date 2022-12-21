@@ -12,15 +12,16 @@ public class InferfejsUzytkownika {
     private Uczelnia Dane;
     private Scanner scan = new Scanner(System.in);
     protected PodwyzkaInterface RaiseInter;
+    protected Comparator<Osoba> kompOsoba;
 
 
 
+    //Constructor
     public InferfejsUzytkownika(Uczelnia dane){
         Dane = dane;
-
-
-
     }
+
+    //Settery i Gettery
 
     public Uczelnia getDane() {
         return Dane;
@@ -29,6 +30,7 @@ public class InferfejsUzytkownika {
     public void setDane(Uczelnia dane) {
         Dane = dane;
     }
+
 
     public void Menu(){
         System.out.println("--------------MENU--------------\n");
@@ -111,18 +113,18 @@ public class InferfejsUzytkownika {
                     System.out.println("Podaj Kryterium sortowania: ");
                     System.out.println("\t 1 --- ECTS+/Nazwisko+");
                     System.out.println("\t 2 --- Brak");
-                    int sortKursswitch = scan.nextInt();
-                    switch (sortKursswitch){
-                        case 1:
-                            Collections.sort(Dane.getKursy(),new KomparatorECTSNazwisko());
-                            break;
-                        case 2:
-                            break;
-                        default:
-                            System.out.println("Coś poszło nie tak, (sortowanie kursy)");
-
-                    }
-
+//                    int sortKursswitch = scan.nextInt();
+//                    switch (sortKursswitch){
+//                        case 1:
+//                            Collections.sort(Dane.getKursy(),new KomparatorECTSNazwisko());
+//                            break;
+//                        case 2:
+//                            break;
+//                        default:
+//                            System.out.println("Coś poszło nie tak, (sortowanie kursy)");
+//
+//                    }
+                    Dane.SortujKursy();
                     Dane.Wyprintuj(Dane.getKursy());
                     break;
                 case 204:
@@ -131,33 +133,36 @@ public class InferfejsUzytkownika {
                     System.out.println("\t 2 --- Nazwisko+/Imie+");
                     System.out.println("\t 3 --- Nazwisko+/Wiek-");
                     System.out.println("\t 4 --- Brak");
-                    int sortOsobaswitch = scan.nextInt();
-                    switch (sortOsobaswitch){
-                        case 1:
-                            Collections.sort(Dane.getOsoby(),new KomparatorNazwisko());
-                            break;
-                        case 2:
-                            Collections.sort(Dane.getOsoby(),new KomparatorNazwiskoImie());
-                            break;
-                        case 3:
-                            Collections.sort(Dane.getOsoby(),new KomparatorNazwiskoWiek());
-                         break;
-                        case 4:
-                        break;
-                        default:
-                            System.out.println("Coś poszło nietak, (sortowanie)");
-                    }
-
-
-
-
-
+//                    int sortOsobaswitch = scan.nextInt();
+//                    switch (sortOsobaswitch){
+//                        case 1:
+//                            kompOsoba = new KomparatorNazwisko();
+//                            break;
+//                        case 2:
+//                            kompOsoba = new KomparatorNazwiskoImie();
+//                            break;
+//                        case 3:
+//                            kompOsoba = new KomparatorNazwiskoWiek();
+//                         break;
+//                        case 4:
+//                        break;
+//                        default:
+//                            System.out.println("Coś poszło nietak, (sortowanie)");
+//                    }
+//                    Collections.sort(Dane.getOsoby(),kompOsoba);
+                    Dane.SortujOsoby();
                     Dane.Wyprintuj(Dane.getOsoby());
                     break;
 
 
                 case 301:
+                    System.out.println("Wpisz szukane: ");
+                    ArrayList<Student> szukaniS = Dane.WyszukajStudenta(scan.next());
+                    Dane.Wyprintuj(szukaniS);
+                    if(szukaniS.isEmpty()){
+                        System.out.println("Brak");
 
+                    }
                     break;
                 case 302:
                     System.out.println("Wpisz szukane: ");
@@ -178,100 +183,91 @@ public class InferfejsUzytkownika {
                     }
                     break;
                 case 401:
-                    System.out.println("Wpisz szukane: ");
-                    ArrayList<Student> UsuwaniS = Dane.WyszukajStudenta(scan.next());
-                    System.out.println("Usunąłeś poniższych studentów: ");
-                    Dane.Wyprintuj(UsuwaniS);
-                    if(UsuwaniS.isEmpty()){
-                        System.out.println("Brak");
-                    }
-                    Dane.getOsoby().removeAll(UsuwaniS);
-                    Dane.setOsoby(Dane.getOsoby());
-                    Dane.getStudenci().removeAll(UsuwaniS);
-                    Dane.setStudenci(Dane.getStudenci());
+                    Dane.UsunStudenta();
+                    //                    System.out.println("Wpisz szukane: ");
+//                    ArrayList<Student> UsuwaniS = Dane.WyszukajStudenta(scan.next());
+//                    System.out.println("Usunąłeś poniższych studentów: ");
+//                    Dane.Wyprintuj(UsuwaniS);
+//                    if(UsuwaniS.isEmpty()){
+//                        System.out.println("Brak");
+//                    }
+//                    Dane.getOsoby().removeAll(UsuwaniS);
+//                    Dane.setOsoby(Dane.getOsoby());
+//                    Dane.getStudenci().removeAll(UsuwaniS);
+//                    Dane.setStudenci(Dane.getStudenci());
 
 
 
                     break;
                 case 402:
-                    System.out.println("Wpisz szukane: ");
-                    ArrayList<PracownikUczelni> UsuwaniP = Dane.WyszukajPracownika(scan.next());
-                    System.out.println("Usunąłeś poniższych pracowników: ");
-                    Dane.Wyprintuj(UsuwaniP);
-                    if(UsuwaniP.isEmpty()){
-                        System.out.println("Brak");
-                    }
-                    Dane.getOsoby().removeAll(UsuwaniP);
-                    Dane.setOsoby(Dane.getOsoby());
-                    Dane.getPracownicy().removeAll(UsuwaniP);
-                    Dane.setPracownicy(Dane.getPracownicy());
-
-                    ArrayList<Kurs> UsuwaneKursy= new ArrayList<Kurs>();
-                    for (int i = 0; i <UsuwaniP.size() ; i++) {
-                        for (int j = 0; j <Dane.getKursy().size() ; j++) {
-                            if (Objects.equals(UsuwaniP.get(i), Dane.getKursy().get(j).getProwadzacy())){
-                                UsuwaneKursy.add(Dane.getKursy().get(j));
-                            }
-
-
-                        }
-
-                    }
-                    Dane.getKursy().removeAll(UsuwaneKursy);
-                    Dane.setKursy(Dane.getKursy());
-                    for (int i = 0; i <Dane.getStudenci().size() ; i++) {
-                        Student obecnyStudent = Dane.getStudenci().get(i);
-                        obecnyStudent.getListaKursow().removeAll(UsuwaneKursy);
-                        obecnyStudent.setListaKursow(obecnyStudent.getListaKursow());
-
-
-
-
-                    }
+                    Dane.UsunPracownika();
+                    //                    System.out.println("Wpisz szukane: ");
+//                    ArrayList<PracownikUczelni> UsuwaniP = Dane.WyszukajPracownika(scan.next());
+//                    System.out.println("Usunąłeś poniższych pracowników: ");
+//                    Dane.Wyprintuj(UsuwaniP);
+//                    if(UsuwaniP.isEmpty()){
+//                        System.out.println("Brak");
+//                    }
+//                    Dane.getOsoby().removeAll(UsuwaniP);
+//                    Dane.setOsoby(Dane.getOsoby());
+//                    Dane.getPracownicy().removeAll(UsuwaniP);
+//                    Dane.setPracownicy(Dane.getPracownicy());
+//
+//                    ArrayList<Kurs> UsuwaneKursy= new ArrayList<Kurs>();
+//                    for (int i = 0; i <UsuwaniP.size() ; i++) {
+//                        for (int j = 0; j <Dane.getKursy().size() ; j++) {
+//                            if (Objects.equals(UsuwaniP.get(i), Dane.getKursy().get(j).getProwadzacy())){
+//                                UsuwaneKursy.add(Dane.getKursy().get(j));
+//                            }
+//
+//
+//                        }
+//
+//                    }
+//                    Dane.getKursy().removeAll(UsuwaneKursy);
+//                    Dane.setKursy(Dane.getKursy());
+//                    for (int i = 0; i <Dane.getStudenci().size() ; i++) {
+//                        Student obecnyStudent = Dane.getStudenci().get(i);
+//                        obecnyStudent.getListaKursow().removeAll(UsuwaneKursy);
+//                        obecnyStudent.setListaKursow(obecnyStudent.getListaKursow());
+//
+//
+//
+//
+//                    }
 
 
 
 
                     break;
                 case 403:
-                    System.out.println("Wpisz szukane: ");
-                    ArrayList<Kurs> UsuwaniK = Dane.WyszukajKurs(scan.next());
-                    System.out.println("Usunąłeś poniższe kursy: ");
-                    Dane.Wyprintuj(UsuwaniK);
-                    if(UsuwaniK.isEmpty()){
-                        System.out.println("Brak");
-                    }
-
-                    Dane.getKursy().removeAll(UsuwaniK);
-                    Dane.setKursy(Dane.getKursy());
-
-
-                    for (int i = 0; i <Dane.getStudenci().size() ; i++) {
-                        Student obecnyStudent = Dane.getStudenci().get(i);
-                        obecnyStudent.getListaKursow().removeAll(UsuwaniK);
-                        obecnyStudent.setListaKursow(obecnyStudent.getListaKursow());
-                    }
+                    Dane.UsunKurs();
+//                    System.out.println("Wpisz szukane: ");
+//                    ArrayList<Kurs> UsuwaniK = Dane.WyszukajKurs(scan.next());
+//                    System.out.println("Usunąłeś poniższe kursy: ");
+//                    Dane.Wyprintuj(UsuwaniK);
+//                    if(UsuwaniK.isEmpty()){
+//                        System.out.println("Brak");
+//                    }
+//
+//                    Dane.getKursy().removeAll(UsuwaniK);
+//                    Dane.setKursy(Dane.getKursy());
+//
+//
+//                    for (int i = 0; i <Dane.getStudenci().size() ; i++) {
+//                        Student obecnyStudent = Dane.getStudenci().get(i);
+//                        obecnyStudent.getListaKursow().removeAll(UsuwaniK);
+//                        obecnyStudent.setListaKursow(obecnyStudent.getListaKursow());
+//                    }
                     break;
                 case 501:
+
                     System.out.println("W jaki sposób chcesz dać podwyżkę?");
                     System.out.println("\t 1 --- Procentowo");
                     System.out.println("\t 2 --- Stale");
-                    int podwyzkaScan = scan.nextInt();
-
-                    Dane.wykonajStrategie(podwyzkaScan);
-                    Dane.Wyprintuj(Dane.getPracownicy());
-
-                    System.out.println("Komu chcesz dać podwyżkę? Podaj ID: ");
-                    String IDPodwyzka = scan.next();
-
-
-                    try{
-                        Dane.getRaiseInter().SposobNaPodwyzke(Dane.WyszukajPracownikaID(IDPodwyzka));
-                    } catch (Exception e){
-                        System.out.println("Niepoprawne ID");
-                    }
-
+                    Dane.DajPodwyzke();
                     break;
+
 
 
                 default:
@@ -330,7 +326,6 @@ public class InferfejsUzytkownika {
 
 
         }
-
     public PracownikA StworzPracownikaA(){
         System.out.println("ID: ");
         int ID = scan.nextInt();
@@ -426,7 +421,6 @@ public class InferfejsUzytkownika {
 
 
     }
-
     public  Student StworzStudenta(){
         System.out.println("ID: ");
         int ID = scan.nextInt();

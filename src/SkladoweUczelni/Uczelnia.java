@@ -1,13 +1,18 @@
 package SkladoweUczelni;
 
+import Komparatory.KomparatorECTSNazwisko;
+import Komparatory.KomparatorNazwisko;
+import Komparatory.KomparatorNazwiskoImie;
+import Komparatory.KomparatorNazwiskoWiek;
 import SkladoweUczelni.*;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.*;
+
 import Strategia.*;
 
 public class Uczelnia {
+    private Scanner scan = new Scanner(System.in);
 
     private  ArrayList<Kurs> Kursy = new ArrayList<Kurs>();
     private ArrayList<Osoba> Osoby = new ArrayList<Osoba>();
@@ -16,7 +21,7 @@ public class Uczelnia {
     private ArrayList<String> StanowiskaBD = new ArrayList<>(Arrays.asList("Asystent", "Adiunkt", "ProfesorNadzwyczajny", "ProfesorZwyczajny", "Wykladowca"));
     private ArrayList<String> StanowiskaA = new ArrayList<>(Arrays.asList("Referent","Specjalista","StarszySpecjalista"));
 
-
+    protected Comparator<Osoba> kompOsoba;
     protected PodwyzkaInterface RaiseInter;
 
 
@@ -136,19 +141,77 @@ public class Uczelnia {
 
         } return Wyszukani;
     }
-    // Metoda ta będzie używana do usuwania
+    public void UsunStudenta(){
+        System.out.println("Wpisz szukane: ");
+        ArrayList<Student> UsuwaniS = WyszukajStudenta(scan.next());
+        System.out.println("Usunąłeś poniższych studentów: ");
+        Wyprintuj(UsuwaniS);
+        if(UsuwaniS.isEmpty()){
+            System.out.println("Brak");
+        }
+        getOsoby().removeAll(UsuwaniS);
+        setOsoby(getOsoby());
+        getStudenci().removeAll(UsuwaniS);
+        setStudenci(getStudenci());
+
+    }
+
+    public void UsunPracownika(){
+        System.out.println("Wpisz szukane: ");
+        ArrayList<PracownikUczelni> UsuwaniP = WyszukajPracownika(scan.next());
+        System.out.println("Usunąłeś poniższych pracowników: ");
+        Wyprintuj(UsuwaniP);
+        if(UsuwaniP.isEmpty()){
+            System.out.println("Brak");
+        }
+        getOsoby().removeAll(UsuwaniP);
+        setOsoby(getOsoby());
+        getPracownicy().removeAll(UsuwaniP);
+        setPracownicy(getPracownicy());
+
+        ArrayList<Kurs> UsuwaneKursy = new ArrayList<Kurs>();
+        for (int i = 0; i < UsuwaniP.size() ; i++) {
+            for (int j = 0; j <getKursy().size() ; j++) {
+                if(Objects.equals(UsuwaniP.get(i),getKursy().get(j).getProwadzacy())){
+                    UsuwaneKursy.add(getKursy().get(j));
+                }
+
+            }
+
+        }
+        getKursy().removeAll(UsuwaneKursy);
+        setKursy(getKursy());
+        for (int i = 0; i <getStudenci().size() ; i++) {
+            Student obecnyStudent = getStudenci().get(i);
+            obecnyStudent.getListaKursow().removeAll(UsuwaneKursy);
+            obecnyStudent.setListaKursow(obecnyStudent.getListaKursow());
+
+        }
+
+    }
+
+    public void UsunKurs(){
+        System.out.println("Wpisz szukane: ");
+        ArrayList<Kurs> UsuwaniK = WyszukajKurs(scan.next());
+        System.out.println("Usunąłeś poniższe kursy: ");
+        Wyprintuj(UsuwaniK);
+        if(UsuwaniK.isEmpty()){
+            System.out.println("Brak");
+        }
+        getKursy().removeAll(UsuwaniK);
+        setKursy(getKursy());
 
 
-//    public  ArrayList<Student> WyszukajStudentaBezKursow(String InPut){
-//        ArrayList<Student> Wyszukani = new ArrayList<Student>();
-//        for (int i = 0; i <Studenci.size(); i++) {
-//            Student obecnyStudent = Studenci.get(i);
-//            if ( InPut.equals(obecnyStudent.getNazwisko())  ||  InPut.equals(obecnyStudent.getImie())  ||  InPut.equals(String.valueOf(obecnyStudent.getIndex()))  ||  InPut.equals(String.valueOf(obecnyStudent.getRok()))){
-//                Wyszukani.add(obecnyStudent);
-//            }
-//
-//        } return Wyszukani;
-//    }
+        for (int i = 0; i <getStudenci().size() ; i++) {
+            Student obecnyStudent = getStudenci().get(i);
+            obecnyStudent.getListaKursow().removeAll(UsuwaniK);
+            obecnyStudent.setListaKursow(obecnyStudent.getListaKursow());
+        }
+
+    }
+
+
+
     public Student WyszukajStudentaID(String InPut){
         Student szukany;
         for (int i = 0; i <Studenci.size() ; i++) {
@@ -261,6 +324,69 @@ public class Uczelnia {
 
                 break;
         }
+    }
+
+    public void SortujKursy(){
+        int sortKursswitch = scan.nextInt();
+        switch (sortKursswitch){
+            case 1:
+                Collections.sort(getKursy(),new KomparatorECTSNazwisko());
+                break;
+            case 2:
+                break;
+            default:
+                System.out.println("Coś poszło nie tak, (sortowanie kursy)");
+
+        }
+
+
+
+    }
+
+    public void SortujOsoby(){
+        int sortOsobaswitch = scan.nextInt();
+        switch (sortOsobaswitch){
+            case 1:
+                kompOsoba = new KomparatorNazwisko();
+                break;
+            case 2:
+                kompOsoba = new KomparatorNazwiskoImie();
+                break;
+            case 3:
+                kompOsoba = new KomparatorNazwiskoWiek();
+                break;
+            case 4:
+                break;
+            default:
+                System.out.println("Coś poszło nietak, (sortowanie)");
+        }
+        Collections.sort(getOsoby(),kompOsoba);
+
+
+
+
+
+
+    }
+
+    public void DajPodwyzke(){
+
+        int podwyzkaScan = scan.nextInt();
+
+        wykonajStrategie(podwyzkaScan);
+        Wyprintuj(getPracownicy());
+
+        System.out.println("Komu chcesz dać podwyżkę? Podaj ID: ");
+        String IDPodwyzka = scan.next();
+
+
+        try{
+            getRaiseInter().SposobNaPodwyzke(WyszukajPracownikaID(IDPodwyzka));
+        } catch (Exception e){
+            System.out.println("Niepoprawne ID");
+        }
+
+
     }
 
 
