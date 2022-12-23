@@ -185,6 +185,7 @@ public class Uczelnia {
 
         } catch (IOException | ClassNotFoundException e){
             zapiszPuste();
+
         }
 
     }
