@@ -1,4 +1,6 @@
-public abstract class PracownikUczelni extends  Osoba {
+package SkladoweUczelni;
+
+public abstract class PracownikUczelni extends Osoba {
 
     //Skladowe
 
@@ -10,8 +12,8 @@ public abstract class PracownikUczelni extends  Osoba {
     // Konstruktor
 
 
-    public PracownikUczelni(String imie, String nazwisko, String PESEL, int wiek, String plec, String stanowisko, double stazPracy, double pensja) {
-        super(imie, nazwisko, PESEL, wiek, plec);
+    public PracownikUczelni(int ID,String imie, String nazwisko, String PESEL, int wiek, String plec, String stanowisko, double stazPracy, double pensja) {
+        super(ID,imie, nazwisko, PESEL, wiek, plec);
         Stanowisko = stanowisko;
         StazPracy = stazPracy;
         Pensja = pensja;
@@ -34,7 +36,7 @@ public abstract class PracownikUczelni extends  Osoba {
         return StazPracy;
     }
 
-    public void setStazPracy(float stazPracy) {
+    public void setStazPracy(double stazPracy) {
         StazPracy = stazPracy;
     }
 
@@ -42,7 +44,7 @@ public abstract class PracownikUczelni extends  Osoba {
         return Pensja;
     }
 
-    public void setPensja(float pensja) {
+    public void setPensja(double pensja) {
         Pensja = pensja;
     }
 

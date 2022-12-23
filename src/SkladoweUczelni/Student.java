@@ -1,8 +1,8 @@
-import java.io.Serializable;
-import java.lang.reflect.Array;
+package SkladoweUczelni;
+
 import java.util.ArrayList;
 
-public class Student extends Osoba  {
+public class Student extends Osoba {
 
     //Skladowe
 
@@ -21,8 +21,8 @@ public class Student extends Osoba  {
     //Konstruktor
 
 
-    public Student(String imie, String nazwisko, String PESEL, int wiek, String plec, int index, int rok, ArrayList<Kurs> listaKursow, boolean czyErasmus, boolean czyPierwszyStopien, boolean czyDrugiStopien, boolean czyStacjonarne, boolean czyNiestacjonarne) {
-        super(imie, nazwisko, PESEL, wiek, plec);
+    public Student(int ID, String imie, String nazwisko, String PESEL, int wiek, String plec, int index, int rok, ArrayList<Kurs> listaKursow, boolean czyErasmus, boolean czyPierwszyStopien, boolean czyDrugiStopien, boolean czyStacjonarne, boolean czyNiestacjonarne) {
+        super(ID,imie, nazwisko, PESEL, wiek, plec);
         Index = index;
         Rok = rok;
         ListaKursow = listaKursow;

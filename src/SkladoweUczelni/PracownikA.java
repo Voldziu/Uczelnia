@@ -1,4 +1,6 @@
-public class PracownikA extends  PracownikUczelni{
+package SkladoweUczelni;
+
+public class PracownikA extends PracownikUczelni {
 
     //Skladowe
 
@@ -6,8 +8,8 @@ public class PracownikA extends  PracownikUczelni{
 
     //Konstruktor
 
-    public PracownikA(String imie, String nazwisko, String PESEL, int wiek, String plec, String stanowisko, double stazPracy, double pensja, int liczbaNadgodzin) {
-        super(imie, nazwisko, PESEL, wiek, plec, stanowisko, stazPracy, pensja);
+    public PracownikA(int ID,String imie, String nazwisko, String PESEL, int wiek, String plec, String stanowisko, double stazPracy, double pensja, int liczbaNadgodzin) {
+        super(ID,imie, nazwisko, PESEL, wiek, plec, stanowisko, stazPracy, pensja);
         LiczbaNadgodzin = liczbaNadgodzin;
     }
 
