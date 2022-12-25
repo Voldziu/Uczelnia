@@ -1,4 +1,4 @@
-package Komparatory;
+package Strategia.Komparatory;
 import SkladoweUczelni.*;
 
 

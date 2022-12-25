@@ -1,17 +1,90 @@
 package SkladoweUczelni;
 
-import Komparatory.KomparatorECTSNazwisko;
-import Komparatory.KomparatorNazwisko;
-import Komparatory.KomparatorNazwiskoImie;
-import Komparatory.KomparatorNazwiskoWiek;
-import SkladoweUczelni.*;
+import Strategia.Podwyzka.PodwyzkaInterface;
+import Strategia.Podwyzka.PodwyzkaSposob1;
+import Strategia.Podwyzka.PodwyzkaSposob2;
+import Strategia.Komparatory.KomparatorECTSNazwisko;
+import Strategia.Komparatory.KomparatorNazwisko;
+import Strategia.Komparatory.KomparatorNazwiskoImie;
+import Strategia.Komparatory.KomparatorNazwiskoWiek;
 
 import java.io.*;
 import java.util.*;
 
-import Strategia.*;
 
-public class Uczelnia {
+
+
+//KLASA NIEUZYWANA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public class UczelniaORG {
     private Scanner scan = new Scanner(System.in);
 
     private  ArrayList<Kurs> Kursy = new ArrayList<Kurs>();
@@ -34,7 +107,7 @@ public class Uczelnia {
 
 
 
-    public Uczelnia() {
+    public UczelniaORG() {
         Kursy = new ArrayList<Kurs>();
         Osoby = new ArrayList<Osoba>();
         Studenci=GetStudenci();

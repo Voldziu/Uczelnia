@@ -3,7 +3,7 @@ package SkladoweUczelni;
 import java.io.Serial;
 import java.io.Serializable;
 
-public abstract class  Osoba  implements Serializable {
+public abstract class  Osoba  extends Creation implements Serializable {
 
     //Skladowe
     @Serial
@@ -25,6 +25,7 @@ public abstract class  Osoba  implements Serializable {
         Wiek = wiek;
         Plec = plec;
     }
+
 
 
     //Gettery Settery

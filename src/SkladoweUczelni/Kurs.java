@@ -2,7 +2,7 @@ package SkladoweUczelni;
 
 import java.io.Serializable;
 
-public class Kurs implements Serializable {
+public class Kurs extends Creation implements Serializable  {
 
     private static final long serialVersionUID = 5567566049323461550L;
 

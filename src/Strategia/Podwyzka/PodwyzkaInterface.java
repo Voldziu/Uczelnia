@@ -1,4 +1,4 @@
-package Strategia;
+package Strategia.Podwyzka;
 import SkladoweUczelni.*;
 
 public interface PodwyzkaInterface {

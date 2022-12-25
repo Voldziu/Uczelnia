@@ -1,25 +1,21 @@
-import SkladoweUczelni.Uczelnia;
-import Komparatory.*;
-
-import java.util.Collections;
-import java.util.List;
+import Observable.Uczelnia;
+import Observers.ObslugaUczelni;
+import SkladoweUczelni.UczelniaORG;
 
 public class Main {
 
 
-    //Obsluzyc jakos bledy
-    // Czemu stworzyl sie kurs 8 analiza bez prowadzacego?
 
 
 
 
 
     public static void main(String[] args) {
-        Uczelnia Pwr = new Uczelnia();
-        InferfejsUzytkownika gui = new InferfejsUzytkownika(Pwr);
+        Uczelnia pwr = new Uczelnia();
+        ObslugaUczelni gui = new ObslugaUczelni(pwr);
         try {
             gui.Graj();
-            gui.getDane().wykonajStrategie(2);
+
 
         } catch (Exception e){
             e.printStackTrace();

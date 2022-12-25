@@ -1,6 +1,6 @@
 package SkladoweUczelni;
 
-public class PracownikA extends PracownikUczelni {
+public class PracownikA extends PracownikUczelni{
 
     //Skladowe
 

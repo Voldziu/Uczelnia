@@ -1,15 +1,83 @@
-import Komparatory.KomparatorECTSNazwisko;
-import Komparatory.KomparatorNazwisko;
-import Komparatory.KomparatorNazwiskoImie;
-import Komparatory.KomparatorNazwiskoWiek;
 import SkladoweUczelni.*;
-import Strategia.PodwyzkaInterface;
+import Strategia.Podwyzka.PodwyzkaInterface;
 
 import java.util.*;
 
 
+
+
+
+// KLASA NIEUZYWANA
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 public class InferfejsUzytkownika {
-    private Uczelnia Dane;
+    private UczelniaORG Dane;
     private Scanner scan = new Scanner(System.in);
     protected PodwyzkaInterface RaiseInter;
     protected Comparator<Osoba> kompOsoba;
@@ -17,17 +85,17 @@ public class InferfejsUzytkownika {
 
 
     //Constructor
-    public InferfejsUzytkownika(Uczelnia dane){
+    public InferfejsUzytkownika(UczelniaORG dane){
         Dane = dane;
     }
 
     //Settery i Gettery
 
-    public Uczelnia getDane() {
+    public UczelniaORG getDane() {
         return Dane;
     }
 
-    public void setDane(Uczelnia dane) {
+    public void setDane(UczelniaORG dane) {
         Dane = dane;
     }
 
