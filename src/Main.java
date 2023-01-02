@@ -11,16 +11,20 @@ public class Main {
 
 
     public static void main(String[] args) {
-        Uczelnia pwr = new Uczelnia();
-        ObslugaUczelni gui = new ObslugaUczelni(pwr);
-        try {
-            gui.Graj();
+//        Uczelnia pwr = new Uczelnia();
+//        ObslugaUczelni gui = new ObslugaUczelni(pwr);
+//
+//        try {
+//            gui.Graj();
+//
+//
+//        } catch (Exception e){
+//            e.printStackTrace();
+//            gui.getDane().zapisz();
+//        }
 
-
-        } catch (Exception e){
-            e.printStackTrace();
-            gui.getDane().zapisz();
-        }
+        GUI gui = new GUI();
+        gui.Graj();
 
 
 
