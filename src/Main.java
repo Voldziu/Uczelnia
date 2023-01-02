@@ -1,6 +1,4 @@
-import Observable.Uczelnia;
-import Observers.ObslugaUczelni;
-import SkladoweUczelni.UczelniaORG;
+import GUI.GUI;
 
 public class Main {
 
