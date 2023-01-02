@@ -10,6 +10,8 @@ public class GUI extends JFrame implements ActionListener {
     private ArrayList<JButton> ListaButtonow;
     private ArrayList<JTextField> ListaTextow;
 
+    private JButton wyjdzStworz;
+
     private JButton Stworz;
 
     private JButton StworzStudenta;
@@ -37,6 +39,8 @@ public class GUI extends JFrame implements ActionListener {
     private JButton WyszukajKurs;
 
     private JButton Cofnij;
+
+    private JButton zatwierdz;
     private JPanel polnoc;
     private JPanel poludnie;
     private JPanel wschod;
@@ -116,6 +120,9 @@ public class GUI extends JFrame implements ActionListener {
         Wyszukaj.addActionListener(this);
         Wyprintuj.addActionListener(this);
         Usun.addActionListener(this);
+        StworzPracownikaA.addActionListener(this);
+        StworzPracownikaBD.addActionListener(this);
+
 
 
 
@@ -163,7 +170,7 @@ public class GUI extends JFrame implements ActionListener {
 
          this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
          this.setLayout(new BorderLayout());
-         this.setSize(1000,500);
+         this.setSize(1200,500);
 //         this.pack();
          this.setVisible(true);
          this.add(polnoc,BorderLayout.NORTH);
@@ -171,6 +178,9 @@ public class GUI extends JFrame implements ActionListener {
          this.add(wschod,BorderLayout.EAST);
          this.add(zachod,BorderLayout.WEST);
          this.add(centrum,BorderLayout.CENTER);
+
+        this.revalidate();
+        this.repaint();
 
 
 
@@ -181,8 +191,13 @@ public class GUI extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==Stworz){
             StworzMenu();
-            InterfejsTworzenia(5, new ArrayList<>(Arrays.asList("Asystent", "Adiunkt", "ProfesorNadzwyczajnyuuuuu", "ProfesorZwyczajny", "Wykladowca")));
 
+
+        } else if (e.getSource()==StworzPracownikaA) {
+            InterfejsTworzenia(new ArrayList<>(Arrays.asList("Asystent", "Adiunkt", "ProfesorNadzwyczajny", "ProfesorZwyczajny", "Wykladowca")),"lol");
+
+        } else if (e.getSource()==StworzPracownikaBD) {
+            InterfejsTworzenia(new ArrayList<>(Arrays.asList("Asystent", "Adiunkt", "ProfesorNadzwyczajny", "ProfesorZwyczajny", "Wykladowca","6")),"BD");
 
         } else if (e.getSource()==Cofnij) {
             CofnijMenu();
@@ -198,11 +213,18 @@ public class GUI extends JFrame implements ActionListener {
         } else if (e.getSource()==Wyprintuj) {
             WyprintujMenu();
 
-        } else if (ListaButtonow.contains(e.getSource())) {
-            OdczytajTekst(e);
+        } else if (e.getSource()==zatwierdz) {
+            ZwrocListeTekstow(e);
+            System.out.println(ZwrocListeTekstow(e));
 
 
             
+        } else if (e.getSource()== wyjdzStworz) {
+            StworzMenu();
+
+
+
+
         }
 
 
@@ -266,23 +288,32 @@ public class GUI extends JFrame implements ActionListener {
         this.repaint();
     }
 
-    public void OdczytajTekst(ActionEvent e){
-        int index = ListaButtonow.indexOf(e.getSource());
+    public ArrayList ZwrocListeTekstow(ActionEvent e){
         ((JButton)e.getSource()).setEnabled(false);
+        ArrayList<String> lista = new ArrayList<String>();
+        for (int i = 0; i <ListaTextow.size(); i++) {
+            lista.add(ListaTextow.get(i).getText());
 
 
-        System.out.println(ListaTextow.get(index).getText());
+
+        }
+
+        return lista;
     }
 
 
 
-    public void InterfejsTworzenia(int LiczbaZmiennych,ArrayList<String> nazwy){
+    public void InterfejsTworzenia(ArrayList<String> nazwy,String napis){
+        centrumNaglowek.removeAll();
+        int LiczbaZmiennych = nazwy.size();
+
+        JLabel labelglowny = new JLabel("Tworzysz: "+napis);
+        zatwierdz = new JButton("Zatwierdz");
+        wyjdzStworz = new JButton("Wyjdz");
+        zatwierdz.addActionListener(this);
+        wyjdzStworz.addActionListener(this);
 
 
-
-
-
-        ListaButtonow = new ArrayList<JButton>();
         ListaTextow = new ArrayList<JTextField>();
 
         JPanel PanelLewus  = new JPanel();
@@ -291,27 +322,29 @@ public class GUI extends JFrame implements ActionListener {
         JPanel PanelDonos = new JPanel();
         PanelDonos.setLayout(new GridLayout(LiczbaZmiennych,1));
 
-        JPanel PanelPrawak = new JPanel();
-        PanelPrawak.setLayout(new GridLayout(LiczbaZmiennych,1));
+
 
 
 
         centrumMain.setLayout(new BorderLayout());
+        centrumNaglowek.add(labelglowny);
+        centrumNaglowek.add(zatwierdz);
+        centrumNaglowek.add(wyjdzStworz);
 
         centrumMain.add(PanelLewus,BorderLayout.WEST);
         centrumMain.add(PanelDonos,BorderLayout.CENTER);
-        centrumMain.add(PanelPrawak,BorderLayout.EAST);
+
         for (int i = 0; i <LiczbaZmiennych ; i++) {
-            JButton button = new JButton("Zatwierdz");
+
             JLabel label = new JLabel(nazwy.get(i));
-            button.addActionListener(this);
+
             JTextField text = new JTextField();
 
-            PanelPrawak.add(button);
+
             PanelDonos.add(text);
             PanelLewus.add(label);
 
-            ListaButtonow.add(button);
+
             ListaTextow.add(text);
 
         }
