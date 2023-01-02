@@ -1,80 +1,332 @@
-
-
-import Observable.Uczelnia;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-public class GUI {
-    Uczelnia pwr = new Uczelnia();
-
+import java.util.ArrayList;
+import java.util.Arrays;
 
 
+public class GUI extends JFrame implements ActionListener {
+    private ArrayList<JButton> ListaButtonow;
+    private ArrayList<JTextField> ListaTextow;
 
-    JButton przycisk1 = new JButton("Kliknij mnie 1");
-    JButton przycisk2 = new JButton("Kliknij mnie 2");
-    JButton przycisk3 = new JButton("Kliknij mnie 3");
-    JButton przycisk4 = new JButton("Kliknij mnie 4");
-    JButton przycisk5 = new JButton("Kliknij mnie 5");
+    private JButton Stworz;
 
-    JPanel panel1 = new JPanel();
-    JPanel panel2 = new JPanel();
-    JPanel panel3 = new JPanel();
-    JPanel panel4 = new JPanel();
-    JPanel panel5 = new JPanel();
+    private JButton StworzStudenta;
+    private JButton StworzPracownikaBD;
+    private JButton StworzPracownikaA;
+    private JButton StworzKurs;
 
-    JTextField text = new JTextField(20);
+    private JButton Usun;
+    private JButton UsunStudenta;
+    private JButton UsunPracownika;
+    private JButton UsunKurs;
 
-    private JFrame ramka  = new JFrame();
+    private JButton Wyprintuj;
 
-    class ReakcjaNaprzycisk1 implements ActionListener{
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            przycisk1.setText(text.getText());
-            ramka.getContentPane().add(BorderLayout.EAST,panel1);
-            ramka.getContentPane().add(BorderLayout.WEST,panel2);
-            panel1.add(przycisk1);
-            panel2.add(przycisk2);
-            pwr.Wyprintuj(pwr.getStanowiskaA());
+    private JButton WyprintujStudenta;
+    private JButton WyprintujPracownika;
+    private JButton WyprintujOsoby;
+
+    private JButton WyprintujKurs;
+
+    private JButton Wyszukaj;
+
+    private JButton WyszukajStudenta;
+    private JButton WyszukajPracownika;
+    private JButton WyszukajKurs;
+
+    private JButton Cofnij;
+    private JPanel polnoc;
+    private JPanel poludnie;
+    private JPanel wschod;
+    private JPanel zachod;
+    private JPanel centrum;
+    private JPanel centrumNaglowek;
+    private JPanel centrumMain;
+
+    private JLabel naglowek;
+    private JLabel whattodo;
 
 
+
+
+    public GUI(){
+         Stworz = new JButton("Stwórz");
+         StworzStudenta = new JButton("Stwórz Studenta");
+         StworzPracownikaA = new JButton("Stwórz Pracownika Administracji");
+         StworzPracownikaBD = new JButton("Stwórz Pracownika Badawczo-Dydaktycznego");
+         StworzKurs = new JButton("Stwórz Kurs");
+
+
+         Usun = new JButton("Usuń");
+         UsunStudenta = new JButton("Usuń Studenta");
+         UsunPracownika = new JButton("Usuń Pracownika");
+         UsunKurs = new JButton("Usuń Kurs");
+
+
+         Wyprintuj = new JButton("Wyprintuj");
+        WyprintujStudenta = new JButton("Wyprintuj Studentów");
+        WyprintujPracownika = new JButton("Wyprintuj Pracowników");
+        WyprintujKurs = new JButton("Wyprintuj Kursy");
+        WyprintujOsoby = new JButton("Wyprintuj Osoby");
+
+         Wyszukaj = new JButton("Wyszukaj");
+         WyszukajStudenta = new JButton("Wyszukaj Studenta");
+        WyszukajPracownika = new JButton("Wyszukaj Pracownika");
+        WyszukajKurs = new JButton("Wyszukaj Kurs");
+         Cofnij = new JButton("Cofnij");
+
+
+
+
+         naglowek = new JLabel();
+         naglowek.setText("Witaj w Pe Wu Er");
+         naglowek.setFont(new Font(null,1,20));
+
+         whattodo = new JLabel();
+         whattodo.setText("Co chcesz zrobić?");
+         whattodo.setFont(new Font(null,1,10));
+
+
+
+
+
+
+         polnoc = new JPanel();
+         poludnie = new JPanel();
+         wschod = new JPanel();
+         zachod = new JPanel();
+         centrum = new JPanel();
+         centrumNaglowek = new JPanel();
+
+         centrumMain = new JPanel();
+
+
+    // Layouty
+
+         zachod.setLayout(new GridLayout(5,1));
+         centrum.setLayout(new BorderLayout());
+
+
+    // Action Listernery
+
+        Stworz.addActionListener(this);
+        Cofnij.addActionListener(this);
+        Wyszukaj.addActionListener(this);
+        Wyprintuj.addActionListener(this);
+        Usun.addActionListener(this);
+
+
+
+    //Kolorki
+
+
+
+         polnoc.setBackground(Color.red);
+         poludnie.setBackground(Color.blue);
+         wschod.setBackground(Color.yellow);
+         zachod.setBackground(Color.green);
+
+         centrumNaglowek.setBackground(Color.lightGray);
+         centrumMain.setBackground(Color.darkGray);
+
+    // Rozmiary
+
+
+         polnoc.setPreferredSize(new Dimension(100,50));
+         poludnie.setPreferredSize(new Dimension(100,50));
+         wschod.setPreferredSize(new Dimension(100,100));
+         zachod.setPreferredSize(new Dimension(100,100));
+         centrum.setPreferredSize(new Dimension(100,100));
+         centrumNaglowek.setPreferredSize(new Dimension(100,40));
+
+
+
+
+    // Dodawanie
+
+        polnoc.add(naglowek);
+        zachod.add(Stworz);
+        zachod.add(Usun);
+        zachod.add(Wyprintuj);
+        zachod.add(Wyszukaj);
+        zachod.add(Cofnij);
+        centrum.add(centrumNaglowek,BorderLayout.NORTH);
+        centrum.add(centrumMain,BorderLayout.CENTER);
+        centrumNaglowek.add(whattodo);
+
+
+
+    // Kontruktor
+
+
+         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+         this.setLayout(new BorderLayout());
+         this.setSize(1000,500);
+//         this.pack();
+         this.setVisible(true);
+         this.add(polnoc,BorderLayout.NORTH);
+         this.add(poludnie,BorderLayout.SOUTH);
+         this.add(wschod,BorderLayout.EAST);
+         this.add(zachod,BorderLayout.WEST);
+         this.add(centrum,BorderLayout.CENTER);
+
+
+
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource()==Stworz){
+            StworzMenu();
+            InterfejsTworzenia(5, new ArrayList<>(Arrays.asList("Asystent", "Adiunkt", "ProfesorNadzwyczajnyuuuuu", "ProfesorZwyczajny", "Wykladowca")));
+
+
+        } else if (e.getSource()==Cofnij) {
+            CofnijMenu();
+            centrumNaglowek.add(whattodo);
+
+
+        } else if (e.getSource()==Usun) {
+            UsunMenu();
+        } else if (e.getSource()==Wyszukaj) {
+            WyszukajMenu();
+
+
+        } else if (e.getSource()==Wyprintuj) {
+            WyprintujMenu();
+
+        } else if (ListaButtonow.contains(e.getSource())) {
+            OdczytajTekst(e);
+
+
+            
+        }
+
+
+    }
+
+
+
+    public void StworzMenu(){
+        CofnijMenu();
+
+        centrumNaglowek.setLayout(new FlowLayout());
+        centrumNaglowek.add(StworzStudenta);
+        centrumNaglowek.add(StworzPracownikaA);
+        centrumNaglowek.add(StworzPracownikaBD);
+        centrumNaglowek.add(StworzKurs);
+        this.revalidate();
+        this.repaint();
+    }
+
+
+    public void CofnijMenu(){
+        centrumNaglowek.removeAll();
+        centrumMain.removeAll();
+
+        this.revalidate();
+        this.repaint();
+    }
+    public void WyszukajMenu(){
+        CofnijMenu();
+
+        centrumNaglowek.setLayout(new FlowLayout());
+        centrumNaglowek.add(WyszukajStudenta);
+        centrumNaglowek.add(WyszukajPracownika);
+        centrumNaglowek.add(WyszukajKurs);
+        this.revalidate();
+        this.repaint();
+
+    }
+
+    public void WyprintujMenu(){
+        CofnijMenu();
+        centrumNaglowek.setLayout(new FlowLayout());
+        centrumNaglowek.add(WyszukajStudenta);
+        centrumNaglowek.add(WyprintujPracownika);
+        centrumNaglowek.add(WyprintujKurs);
+        centrumNaglowek.add(WyprintujOsoby);
+
+        this.revalidate();
+        this.repaint();
+
+    }
+    public void UsunMenu(){
+       CofnijMenu();
+
+        centrumNaglowek.setLayout(new FlowLayout());
+        centrumNaglowek.add(UsunStudenta);
+        centrumNaglowek.add(UsunPracownika);
+        centrumNaglowek.add(UsunKurs);
+
+        this.revalidate();
+        this.repaint();
+    }
+
+    public void OdczytajTekst(ActionEvent e){
+        int index = ListaButtonow.indexOf(e.getSource());
+        ((JButton)e.getSource()).setEnabled(false);
+
+
+        System.out.println(ListaTextow.get(index).getText());
+    }
+
+
+
+    public void InterfejsTworzenia(int LiczbaZmiennych,ArrayList<String> nazwy){
+
+
+
+
+
+        ListaButtonow = new ArrayList<JButton>();
+        ListaTextow = new ArrayList<JTextField>();
+
+        JPanel PanelLewus  = new JPanel();
+        PanelLewus.setLayout(new GridLayout(LiczbaZmiennych,1));
+
+        JPanel PanelDonos = new JPanel();
+        PanelDonos.setLayout(new GridLayout(LiczbaZmiennych,1));
+
+        JPanel PanelPrawak = new JPanel();
+        PanelPrawak.setLayout(new GridLayout(LiczbaZmiennych,1));
+
+
+
+        centrumMain.setLayout(new BorderLayout());
+
+        centrumMain.add(PanelLewus,BorderLayout.WEST);
+        centrumMain.add(PanelDonos,BorderLayout.CENTER);
+        centrumMain.add(PanelPrawak,BorderLayout.EAST);
+        for (int i = 0; i <LiczbaZmiennych ; i++) {
+            JButton button = new JButton("Zatwierdz");
+            JLabel label = new JLabel(nazwy.get(i));
+            button.addActionListener(this);
+            JTextField text = new JTextField();
+
+            PanelPrawak.add(button);
+            PanelDonos.add(text);
+            PanelLewus.add(label);
+
+            ListaButtonow.add(button);
+            ListaTextow.add(text);
 
         }
-    }
 
 
-    public void Graj(){
-        panel3.setLayout(new BoxLayout(panel3, BoxLayout.Y_AXIS));
-        ramka.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ramka.getContentPane().add(BorderLayout.NORTH, panel1);
-        ramka.getContentPane().add(BorderLayout.WEST, panel2);
-
-        //Tu dodamy dwa kolejne komponenty - tj. do panelu 3 w centralnej cz�ci
-        ramka.getContentPane().add(BorderLayout.CENTER, panel3);
-
-        ramka.getContentPane().add(BorderLayout.EAST, panel4);
-        ramka.getContentPane().add(BorderLayout.SOUTH, panel5);
-        text.setText("chuj");
-        panel1.add(przycisk1);
-        panel2.add(przycisk2);
-        panel3.add(przycisk3);
-        panel4.add(przycisk4);
-        panel5.add(przycisk5);
-        przycisk1.addActionListener(new ReakcjaNaprzycisk1());
 
 
-        ramka.setSize(1000,1000);
-        ramka.pack();
-
-        ramka.setResizable(false);
-        ramka.setVisible(true);
 
 
+
+        this.revalidate();
+        this.repaint();
 
     }
-
-
-
 }
+
+
+

@@ -11,9 +11,12 @@ public class Main {
 
 
     public static void main(String[] args) {
+         new GUI();
+
+
+
 //        Uczelnia pwr = new Uczelnia();
 //        ObslugaUczelni gui = new ObslugaUczelni(pwr);
-//
 //        try {
 //            gui.Graj();
 //
@@ -22,9 +25,6 @@ public class Main {
 //            e.printStackTrace();
 //            gui.getDane().zapisz();
 //        }
-
-        GUI gui = new GUI();
-        gui.Graj();
 
 
 
