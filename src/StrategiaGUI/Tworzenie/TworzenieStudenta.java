@@ -1,15 +1,14 @@
-package Tworzenie;
+package StrategiaGUI.Tworzenie;
 
 import GUI.GUI;
 import SkladoweUczelni.Kurs;
-import SkladoweUczelni.PracownikUczelni;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class TworzenieStudenta implements Tworzenie{
+public class TworzenieStudenta implements Tworzenie {
     @Override
     public void Stworz(GUI g) {
         ArrayList<String> nazwy = new ArrayList<>(Arrays.asList("ID", "Imie", "Nazwisko", "Pesel", "wiek","plec","index","rok"));

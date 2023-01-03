@@ -1,4 +1,4 @@
-package Tworzenie;
+package StrategiaGUI.Tworzenie;
 
 import GUI.GUI;
 
@@ -6,23 +6,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import SkladoweUczelni.*;
 
-public class TworzenieKurs implements Tworzenie{
-
+public class TworzeniePracownikBD implements Tworzenie{
     @Override
     public void Stworz(GUI g) {
-        ArrayList<String> nazwy = new ArrayList<>(Arrays.asList("ID", "Nazwa Kursu","ECTS"));
-        String napis = "Kurs";
+        ArrayList<String> nazwy = new ArrayList<>(Arrays.asList("ID", "Imie", "Nazwisko", "Pesel", "wiek","plec","stanowisko","stazPracy","pensja","LiczbaPublikacji"));
+        String napis = "Pracownika Badawczo-Dydaktycznego";
 
 
         g.getCentrumNaglowek().removeAll();
         int LiczbaZmiennych = nazwy.size();
 
         JLabel labelglowny = new JLabel("Tworzysz: "+napis);
-        g.setZatwierdzStworzKurs(new JButton("Zatwierdz"));
+        g.setZatwierdzStworzBD(new JButton("Zatwierdz"));
         g.setWyjdzStworz(new JButton("Wyjdz"));
-        g.getZatwierdzStworzKurs().addActionListener(g);
+        g.getZatwierdzStworzBD().addActionListener(g);
         g.getWyjdzStworz().addActionListener(g);
 
 
@@ -39,22 +37,10 @@ public class TworzenieKurs implements Tworzenie{
         PanelPrawus.setPreferredSize(new Dimension(200,100));
         PanelPrawus.setLayout(new GridLayout(-1,2));
 
-        for (int i = 0; i <g.getUczelnia().getDane().getPracownicy().size(); i++) {
-            PracownikUczelni obecnyPracownik = g.getUczelnia().getDane().getPracownicy().get(i);
-
-            Checkbox checkbox =new Checkbox();
-
-            PanelPrawus.add(checkbox);
-            g.getListaCheckBoxow().add(checkbox);
-
-            PanelPrawus.add(new JLabel(obecnyPracownik.getID()+" "+obecnyPracownik.getNazwisko()));
-
-        }
-
 
         g.getCentrumMain().setLayout(new BorderLayout());
         g.getCentrumNaglowek().add(labelglowny);
-        g.getCentrumNaglowek().add(g.getZatwierdzStworzKurs());
+        g.getCentrumNaglowek().add(g.getZatwierdzStworzBD());
         g.getCentrumNaglowek().add(g.getWyjdzStworz());
 
         g.getCentrumMain().add(PanelLewus,BorderLayout.WEST);
@@ -86,7 +72,6 @@ public class TworzenieKurs implements Tworzenie{
         g.repaint();
 
     }
-
 
 }
 

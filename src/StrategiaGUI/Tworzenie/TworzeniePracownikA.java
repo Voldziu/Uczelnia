@@ -1,4 +1,4 @@
-package Tworzenie;
+package StrategiaGUI.Tworzenie;
 
 import GUI.GUI;
 

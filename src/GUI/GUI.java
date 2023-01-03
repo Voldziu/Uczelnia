@@ -2,11 +2,12 @@ package GUI;
 
 import Observable.Uczelnia;
 import Observers.ObslugaUczelni;
-import SkladoweUczelni.Creation;
 import SkladoweUczelni.Kurs;
 import SkladoweUczelni.PracownikBD;
 import SkladoweUczelni.Student;
-import Tworzenie.*;
+import Strategia.Usun.*;
+import StrategiaGUI.Tworzenie.TworzenieStudenta;
+import StrategiaGUI.Tworzenie.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,6 +20,7 @@ import java.util.Arrays;
 public class GUI extends JFrame implements ActionListener {
 
     protected Tworzenie tworzenie;
+    protected Usun usun;
 
     private ObslugaUczelni uczelnia = new ObslugaUczelni(new Uczelnia());
     private ArrayList<JButton> ListaButtonow;
@@ -27,6 +29,9 @@ public class GUI extends JFrame implements ActionListener {
     private ArrayList<Checkbox> ListaCheckBoxowStudenta;
 
     private JButton wyjdzStworz;
+    private JButton wyjdzWyszukaj;
+    private JButton wyjdzUsun;
+    private JButton wyjdzWprintuj;
 
     private JButton Stworz;
 
@@ -61,6 +66,13 @@ public class GUI extends JFrame implements ActionListener {
     private JButton zatwierdzStworzA;
     private JButton zatwierdzStworzBD;
     private JButton zatwierdzStworzKurs;
+    private JButton zatwierdzUsunKurs;
+    private JButton zatwierdzUsunStudent;
+    private JButton zatwierdzUsunPracownik;
+    private JButton zatwierdzWyszukajKurs;
+    private JButton zatwierdzWyszukajStudent;
+    private JButton zatwierdzWyszukajPracownik;
+    private JButton zatwierdzWyszukajOsoby;
 
 
 
@@ -249,6 +261,17 @@ public class GUI extends JFrame implements ActionListener {
 
         } else if (e.getSource()==Usun) {
             UsunMenu();
+        } else if (e.getSource()==UsunStudenta) {
+            new UsunStudenta().Usun((String) ZwrocListeTekstow(e).get(0),uczelnia.getDane());
+
+
+        } else if (e.getSource()==UsunKurs) {
+
+
+        } else if (e.getSource() == UsunPracownika) {
+
+
+
         } else if (e.getSource()==Wyszukaj) {
             WyszukajMenu();
 
@@ -360,6 +383,7 @@ public class GUI extends JFrame implements ActionListener {
         this.repaint();
     }
 
+
     public ArrayList ZwrocListeTekstow(ActionEvent e){
         ((JButton)e.getSource()).setEnabled(false);
         ArrayList<String> lista = new ArrayList<String>();
@@ -387,7 +411,7 @@ public class GUI extends JFrame implements ActionListener {
 
         return lista;
 
-    }
+    }   //--To wyeksportowac gdzie indziej, jakos mądrzej
     public ArrayList ZwrocListeKursow(ArrayList a){
         ArrayList<Kurs> lista = new ArrayList<Kurs>();
         for (int i = 0; i <a.size() ; i++) {
@@ -401,9 +425,6 @@ public class GUI extends JFrame implements ActionListener {
         ArrayList<Boolean> lista = new ArrayList<Boolean>(Arrays.asList(false,false,false,false,false));
         for (int i = 0; i <a.size() ; i++) {
             lista.set((Integer) a.get(i),true);
-
-
-
         }
         return lista;
 
@@ -502,6 +523,86 @@ public class GUI extends JFrame implements ActionListener {
 
     //gettery
 
+
+    public JButton getWyjdzWyszukaj() {
+        return wyjdzWyszukaj;
+    }
+
+    public void setWyjdzWyszukaj(JButton wyjdzWyszukaj) {
+        this.wyjdzWyszukaj = wyjdzWyszukaj;
+    }
+
+    public JButton getWyjdzUsun() {
+        return wyjdzUsun;
+    }
+
+    public void setWyjdzUsun(JButton wyjdzUsun) {
+        this.wyjdzUsun = wyjdzUsun;
+    }
+
+    public JButton getWyjdzWprintuj() {
+        return wyjdzWprintuj;
+    }
+
+    public void setWyjdzWprintuj(JButton wyjdzWprintuj) {
+        this.wyjdzWprintuj = wyjdzWprintuj;
+    }
+
+    public JButton getZatwierdzUsunKurs() {
+        return zatwierdzUsunKurs;
+    }
+
+    public void setZatwierdzUsunKurs(JButton zatwierdzUsunKurs) {
+        this.zatwierdzUsunKurs = zatwierdzUsunKurs;
+    }
+
+    public JButton getZatwierdzUsunStudent() {
+        return zatwierdzUsunStudent;
+    }
+
+    public void setZatwierdzUsunStudent(JButton zatwierdzUsunStudent) {
+        this.zatwierdzUsunStudent = zatwierdzUsunStudent;
+    }
+
+    public JButton getZatwierdzUsunPracownik() {
+        return zatwierdzUsunPracownik;
+    }
+
+    public void setZatwierdzUsunPracownik(JButton zatwierdzUsunPracownik) {
+        this.zatwierdzUsunPracownik = zatwierdzUsunPracownik;
+    }
+
+    public JButton getZatwierdzWyszukajKurs() {
+        return zatwierdzWyszukajKurs;
+    }
+
+    public void setZatwierdzWyszukajKurs(JButton zatwierdzWyszukajKurs) {
+        this.zatwierdzWyszukajKurs = zatwierdzWyszukajKurs;
+    }
+
+    public JButton getZatwierdzWyszukajStudent() {
+        return zatwierdzWyszukajStudent;
+    }
+
+    public void setZatwierdzWyszukajStudent(JButton zatwierdzWyszukajStudent) {
+        this.zatwierdzWyszukajStudent = zatwierdzWyszukajStudent;
+    }
+
+    public JButton getZatwierdzWyszukajPracownik() {
+        return zatwierdzWyszukajPracownik;
+    }
+
+    public void setZatwierdzWyszukajPracownik(JButton zatwierdzWyszukajPracownik) {
+        this.zatwierdzWyszukajPracownik = zatwierdzWyszukajPracownik;
+    }
+
+    public JButton getZatwierdzWyszukajOsoby() {
+        return zatwierdzWyszukajOsoby;
+    }
+
+    public void setZatwierdzWyszukajOsoby(JButton zatwierdzWyszukajOsoby) {
+        this.zatwierdzWyszukajOsoby = zatwierdzWyszukajOsoby;
+    }
 
     public ArrayList<Checkbox> getListaCheckBoxowStudenta() {
         return ListaCheckBoxowStudenta;
