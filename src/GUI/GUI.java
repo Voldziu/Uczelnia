@@ -6,8 +6,18 @@ import SkladoweUczelni.Kurs;
 import SkladoweUczelni.PracownikBD;
 import SkladoweUczelni.Student;
 import Strategia.Usun.*;
+import Strategia.Wyszukaj.WyszukajKurs;
+import Strategia.Wyszukaj.WyszukajPracownika;
+import Strategia.Wyszukaj.WyszukajStudenta;
 import StrategiaGUI.Tworzenie.TworzenieStudenta;
 import StrategiaGUI.Tworzenie.*;
+import StrategiaGUI.Wyprintuj.WyprintujKursy;
+import StrategiaGUI.Wyprintuj.WyprintujOsoby;
+import StrategiaGUI.Wyprintuj.WyprintujPracownikow;
+import StrategiaGUI.Wyprintuj.WyprintujStudentów;
+import StrategiaGUI.Wyszukaj.WyszukajKursGUI;
+import StrategiaGUI.Wyszukaj.WyszukajPracownikaGUI;
+import StrategiaGUI.Wyszukaj.WyszukajStudentaGUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,6 +37,16 @@ public class GUI extends JFrame implements ActionListener {
     private ArrayList<JTextField> ListaTextow;
     private  ArrayList<Checkbox> ListaCheckBoxow;
     private ArrayList<Checkbox> ListaCheckBoxowStudenta;
+
+    private JButton sortowanieNazwisko;
+    private JButton sortowanieNazwiskoImie;
+    private JButton sortowanieNazwiskoWiek;
+    private JButton sortowanieECTSNazwisko;
+
+
+
+
+
 
     private JButton wyjdzStworz;
     private JButton wyjdzWyszukaj;
@@ -73,6 +93,11 @@ public class GUI extends JFrame implements ActionListener {
     private JButton zatwierdzWyszukajStudent;
     private JButton zatwierdzWyszukajPracownik;
     private JButton zatwierdzWyszukajOsoby;
+
+    private JButton zatwierdzWyprintujStudent;
+    private JButton zatwierdzWyprintujPracownik;
+    private JButton zatwierdzWyprintujKurs;
+    private JButton zatwierdzWyprintujOsoby;
 
 
 
@@ -160,6 +185,17 @@ public class GUI extends JFrame implements ActionListener {
         StworzPracownikaBD.addActionListener(this);
         StworzStudenta.addActionListener(this);
         StworzKurs.addActionListener(this);
+        WyszukajStudenta.addActionListener(this);
+        WyszukajPracownika.addActionListener(this);
+        WyszukajKurs.addActionListener(this);
+        WyprintujKurs.addActionListener(this);
+        WyprintujOsoby.addActionListener(this);
+        WyprintujPracownika.addActionListener(this);
+        WyprintujStudenta.addActionListener(this);
+        UsunStudenta.addActionListener(this);
+        UsunPracownika.addActionListener(this);
+        UsunKurs.addActionListener(this);
+
 
 
 
@@ -246,6 +282,7 @@ public class GUI extends JFrame implements ActionListener {
              new TworzeniePracownikA().Stworz(this);
 
         } else if (e.getSource()==StworzPracownikaBD) {
+//            new TworzeniePracownikBD().Stworz(this);
             new TworzeniePracownikBD().Stworz(this);
 
         } else if (e.getSource()==StworzStudenta) {
@@ -262,10 +299,39 @@ public class GUI extends JFrame implements ActionListener {
         } else if (e.getSource()==Usun) {
             UsunMenu();
         } else if (e.getSource()==UsunStudenta) {
-            new UsunStudenta().Usun((String) ZwrocListeTekstow(e).get(0),uczelnia.getDane());
+            new StrategiaGUI.Usun.UsunStudenta().Usun(this);
+
+
+        } else if (e.getSource()==zatwierdzUsunStudent) {
+            ZwrocListeTekstow(e);
+
+            new WyprintujStudentów().Wyprintuj(this, new WyszukajStudenta().Wyszukaj(ListaTextow.get(0).getText(), uczelnia.getDane()));
+            new UsunStudenta().Usun(ListaTextow.get(0).getText(), uczelnia.getDane());
+
+
+        }else if (e.getSource()==UsunPracownika) {
+            new StrategiaGUI.Usun.UsunPracownika().Usun(this);
+
+
+        } else if (e.getSource()==zatwierdzUsunPracownik) {
+            ZwrocListeTekstow(e);
+
+            new WyprintujPracownikow().Wyprintuj(this, new WyszukajPracownika().Wyszukaj(ListaTextow.get(0).getText(), uczelnia.getDane()));
+            new UsunPracownika().Usun(ListaTextow.get(0).getText(), uczelnia.getDane());
 
 
         } else if (e.getSource()==UsunKurs) {
+            new StrategiaGUI.Usun.UsunKurs().Usun(this);
+
+
+        } else if (e.getSource()==zatwierdzUsunStudent) {
+            ZwrocListeTekstow(e);
+
+            new WyprintujKursy().Wyprintuj(this, new WyszukajKurs().Wyszukaj(ListaTextow.get(0).getText(), uczelnia.getDane()));
+            new UsunKurs().Usun(ListaTextow.get(0).getText(), uczelnia.getDane());
+
+
+        }   else if (e.getSource()==UsunKurs) {
 
 
         } else if (e.getSource() == UsunPracownika) {
@@ -276,17 +342,90 @@ public class GUI extends JFrame implements ActionListener {
             WyszukajMenu();
 
 
+
+
+
+        } else if (e.getSource()==WyszukajStudenta) {
+
+           new WyszukajStudentaGUI().Szukaj(this);
+
+
+        } else if (e.getSource()==zatwierdzWyszukajStudent) {
+            ZwrocListeTekstow(e);
+            new WyprintujStudentów().Wyprintuj(this,new WyszukajStudenta().Wyszukaj(ListaTextow.get(0).getText(),uczelnia.getDane()));
+
+
+
+
+
+
+        } else if (e.getSource()==WyszukajPracownika) {
+            new WyszukajPracownikaGUI().Szukaj(this);
+
+
+        } else if (e.getSource()==zatwierdzWyszukajPracownik) {
+            ZwrocListeTekstow(e);
+            new WyprintujPracownikow().Wyprintuj(this,new WyszukajPracownika().Wyszukaj(ListaTextow.get(0).getText(),uczelnia.getDane()));
+
+
+
+
+
+        } else if (e.getSource()==WyszukajKurs) {
+            new WyszukajKursGUI().Szukaj(this);
+
+
+        } else if (e.getSource()==zatwierdzWyszukajKurs) {
+            ZwrocListeTekstow(e);
+            new WyprintujKursy().Wyprintuj(this,new WyszukajKurs().Wyszukaj(ListaTextow.get(0).getText(), uczelnia.getDane()));
+
+        } else if (e.getSource()==wyjdzWyszukaj) {
+            WyszukajMenu();
+
         } else if (e.getSource()==Wyprintuj) {
             WyprintujMenu();
+
+        } else if (e.getSource()==WyprintujKurs) {
+            new WyprintujKursy().Wyprintuj(this,uczelnia.getDane().getKursy());
+            new WyprintujKursy().AllWyprintuj(this);
+
+        } else if (e.getSource()==sortowanieECTSNazwisko) {
+            WyprintujKursy wyprintujKursy = new WyprintujKursy();
+            System.out.println("1");
+            ArrayList a = uczelnia.getDane().getKursy();
+            wyprintujKursy.Posortuj(a,1);
+            wyprintujKursy.Wyprintuj(this,a);
+            wyprintujKursy.AllWyprintuj(this);
+
+        } else if (e.getSource()==WyprintujOsoby) {
+
+            new WyprintujOsoby().Wyprintuj(this,uczelnia.getDane().getOsoby());
+            new WyprintujOsoby().AllWyprintuj(this);
+
+
+        } else if (e.getSource()==sortowanieNazwisko) {
+
+            SortowanieOsob(1);
+
+        } else if (e.getSource()==sortowanieNazwiskoImie) {
+            SortowanieOsob(2);
+
+        } else if (e.getSource()==sortowanieNazwiskoWiek) {
+            SortowanieOsob(3);
+
+        } else if (e.getSource()== WyprintujStudenta) {
+            new WyprintujStudentów().Wyprintuj(this,uczelnia.getDane().getStudenci());
+
+
+        } else if (e.getSource()==WyprintujPracownika) {
+            new WyprintujPracownikow().Wyprintuj(this,uczelnia.getDane().getPracownicy());
 
         } else if (e.getSource()==zatwierdzStworzStudent) {
             ZwrocListeTekstow(e);
             ZwrocCheckBoxy(ListaCheckBoxow);
 
             uczelnia.getDane().Add(new Student(Integer.parseInt((String) ZwrocListeTekstow(e).get(0)),(String) ZwrocListeTekstow(e).get(1),(String) ZwrocListeTekstow(e).get(2),(String)ZwrocListeTekstow(e).get(3),Integer.parseInt((String) ZwrocListeTekstow(e).get(4)),(String)ZwrocListeTekstow(e).get(5),Integer.parseInt((String) ZwrocListeTekstow(e).get(6)),Integer.parseInt((String) ZwrocListeTekstow(e).get(7)), (ArrayList<Kurs>) ZwrocListeKursow(ZwrocCheckBoxy(ListaCheckBoxow)), (Boolean) ZwrocListeBoolean(ZwrocCheckBoxy(ListaCheckBoxowStudenta)).get(0), (Boolean) ZwrocListeBoolean(ZwrocCheckBoxy(ListaCheckBoxowStudenta)).get(1), (Boolean) ZwrocListeBoolean(ZwrocCheckBoxy(ListaCheckBoxowStudenta)).get(2), (Boolean) ZwrocListeBoolean(ZwrocCheckBoxy(ListaCheckBoxowStudenta)).get(3), (Boolean) ZwrocListeBoolean(ZwrocCheckBoxy(ListaCheckBoxowStudenta)).get(4)));
-            System.out.println(ZwrocListeTekstow(e));
-            System.out.println(ZwrocCheckBoxy(ListaCheckBoxow));
-            System.out.println(ZwrocCheckBoxy(ListaCheckBoxowStudenta));
+
             uczelnia.getDane().Wyprintuj(uczelnia.getDane().getOsoby());
 
 
@@ -362,7 +501,7 @@ public class GUI extends JFrame implements ActionListener {
     public void WyprintujMenu(){
         CofnijMenu();
         centrumNaglowek.setLayout(new FlowLayout());
-        centrumNaglowek.add(WyszukajStudenta);
+        centrumNaglowek.add(WyprintujStudenta);
         centrumNaglowek.add(WyprintujPracownika);
         centrumNaglowek.add(WyprintujKurs);
         centrumNaglowek.add(WyprintujOsoby);
@@ -428,6 +567,15 @@ public class GUI extends JFrame implements ActionListener {
         }
         return lista;
 
+    }
+
+    public void SortowanieOsob(int wybor){
+        StrategiaGUI.Wyprintuj.WyprintujOsoby wyprintujOsoby = new WyprintujOsoby();
+        ArrayList a = uczelnia.getDane().getOsoby();
+
+        wyprintujOsoby.Posortuj(a,wybor);
+        wyprintujOsoby.Wyprintuj(this,a);
+        wyprintujOsoby.AllWyprintuj(this);
     }
 
 
@@ -523,6 +671,70 @@ public class GUI extends JFrame implements ActionListener {
 
     //gettery
 
+
+    public JButton getSortowanieNazwisko() {
+        return sortowanieNazwisko;
+    }
+
+    public void setSortowanieNazwisko(JButton sortowanieNazwisko) {
+        this.sortowanieNazwisko = sortowanieNazwisko;
+    }
+
+    public JButton getSortowanieNazwiskoImie() {
+        return sortowanieNazwiskoImie;
+    }
+
+    public void setSortowanieNazwiskoImie(JButton sortowanieNazwiskoImie) {
+        this.sortowanieNazwiskoImie = sortowanieNazwiskoImie;
+    }
+
+    public JButton getSortowanieNazwiskoWiek() {
+        return sortowanieNazwiskoWiek;
+    }
+
+    public void setSortowanieNazwiskoWiek(JButton sortowanieNazwiskoWiek) {
+        this.sortowanieNazwiskoWiek = sortowanieNazwiskoWiek;
+    }
+
+    public JButton getSortowanieECTSNazwisko() {
+        return sortowanieECTSNazwisko;
+    }
+
+    public void setSortowanieECTSNazwisko(JButton sortowanieECTSNazwisko) {
+        this.sortowanieECTSNazwisko = sortowanieECTSNazwisko;
+    }
+
+    public JButton getZatwierdzWyprintujStudent() {
+        return zatwierdzWyprintujStudent;
+    }
+
+    public void setZatwierdzWyprintujStudent(JButton zatwierdzWyprintujStudent) {
+        this.zatwierdzWyprintujStudent = zatwierdzWyprintujStudent;
+    }
+
+    public JButton getZatwierdzWyprintujPracownik() {
+        return zatwierdzWyprintujPracownik;
+    }
+
+    public void setZatwierdzWyprintujPracownik(JButton zatwierdzWyprintujPracownik) {
+        this.zatwierdzWyprintujPracownik = zatwierdzWyprintujPracownik;
+    }
+
+    public JButton getZatwierdzWyprintujKurs() {
+        return zatwierdzWyprintujKurs;
+    }
+
+    public void setZatwierdzWyprintujKurs(JButton zatwierdzWyprintujKurs) {
+        this.zatwierdzWyprintujKurs = zatwierdzWyprintujKurs;
+    }
+
+    public JButton getZatwierdzWyprintujOsoby() {
+        return zatwierdzWyprintujOsoby;
+    }
+
+    public void setZatwierdzWyprintujOsoby(JButton zatwierdzWyprintujOsoby) {
+        this.zatwierdzWyprintujOsoby = zatwierdzWyprintujOsoby;
+    }
 
     public JButton getWyjdzWyszukaj() {
         return wyjdzWyszukaj;

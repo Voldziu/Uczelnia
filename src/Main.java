@@ -1,4 +1,6 @@
 import GUI.GUI;
+import Observable.Uczelnia;
+import Observers.ObslugaUczelni;
 
 public class Main {
 

@@ -6,10 +6,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class UsunStudenta  implements Usun{
+public class UsunKurs implements Usun{
     @Override
     public void Usun(GUI g) {
-        String napis = "Studenta";
+        String napis = "Kurs";
         String napis2= "Podaj Wartości";
         JLabel tytul = new JLabel("Usuwasz: "+napis);
         g.setZatwierdzUsunStudent(new JButton("Zatwierdz"));
@@ -41,4 +41,6 @@ public class UsunStudenta  implements Usun{
 
 
     }
+
+
 }

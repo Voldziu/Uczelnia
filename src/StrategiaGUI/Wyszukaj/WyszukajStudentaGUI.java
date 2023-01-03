@@ -1,9 +1,12 @@
 package StrategiaGUI.Wyszukaj;
 
 import GUI.GUI;
-import StrategiaGUI.Tworzenie.TworzenieInterfejs;
+import SkladoweUczelni.Student;
+import Strategia.Wyszukaj.WyszukajStudenta;
 
 import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
 
 public class WyszukajStudentaGUI  implements WyszukajGUI {
     @Override
@@ -16,9 +19,36 @@ public class WyszukajStudentaGUI  implements WyszukajGUI {
         g.getZatwierdzWyszukajStudent().addActionListener(g);
         g.getWyjdzWyszukaj().addActionListener(g);
 
+        g.setListaTextow(new ArrayList<JTextField>());
+
+
 
         g.getCentrumNaglowek().removeAll();
-        g.getCentrumNaglowek().add(tytul);
+        g.getCentrumNaglowek().add(tytul,BorderLayout.WEST);
+        g.getCentrumNaglowek().add(new JLabel(napis2));
+        JTextField tekst = new JTextField();
+        tekst.setPreferredSize(new Dimension(150,30));
+        g.getListaTextow().add(tekst);
+        g.getCentrumNaglowek().add(tekst);
+        g.getCentrumNaglowek().add(g.getZatwierdzWyszukajStudent());
+        g.getCentrumNaglowek().add(g.getWyjdzWyszukaj());
+
+
+
+        g.revalidate();
+        g.repaint();
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

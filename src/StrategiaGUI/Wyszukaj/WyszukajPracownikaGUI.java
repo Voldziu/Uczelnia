@@ -1,4 +1,4 @@
-package StrategiaGUI.Usun;
+package StrategiaGUI.Wyszukaj;
 
 import GUI.GUI;
 
@@ -6,16 +6,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class UsunStudenta  implements Usun{
+public class WyszukajPracownikaGUI implements WyszukajGUI{
     @Override
-    public void Usun(GUI g) {
-        String napis = "Studenta";
+    public void Szukaj(GUI g) {
+        String napis = "Pracownika";
         String napis2= "Podaj Wartości";
-        JLabel tytul = new JLabel("Usuwasz: "+napis);
-        g.setZatwierdzUsunStudent(new JButton("Zatwierdz"));
-        g.setWyjdzUsun(new JButton("Wyjdz"));
-        g.getZatwierdzUsunStudent().addActionListener(g);
-        g.getWyjdzUsun().addActionListener(g);
+        JLabel tytul = new JLabel("Wyszukujesz: "+napis);
+        g.setZatwierdzWyszukajPracownik(new JButton("Zatwierdz"));
+        g.setWyjdzWyszukaj(new JButton("Wyjdz"));
+        g.getZatwierdzWyszukajPracownik().addActionListener(g);
+        g.getWyjdzWyszukaj().addActionListener(g);
 
         g.setListaTextow(new ArrayList<JTextField>());
 
@@ -28,13 +28,27 @@ public class UsunStudenta  implements Usun{
         tekst.setPreferredSize(new Dimension(150,30));
         g.getListaTextow().add(tekst);
         g.getCentrumNaglowek().add(tekst);
-        g.getCentrumNaglowek().add(g.getZatwierdzUsunStudent());
-        g.getCentrumNaglowek().add(g.getWyjdzUsun());
+        g.getCentrumNaglowek().add(g.getZatwierdzWyszukajPracownik());
+        g.getCentrumNaglowek().add(g.getWyjdzWyszukaj());
 
 
 
         g.revalidate();
         g.repaint();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
