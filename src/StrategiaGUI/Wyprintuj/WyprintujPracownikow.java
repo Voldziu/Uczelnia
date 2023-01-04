@@ -37,6 +37,7 @@ public class WyprintujPracownikow implements Wyprintuj{
         JTable tablica = new JTable(dane,columnns);
 //        tablica.setPreferredSize(new Dimension(500,50));
         JScrollPane sp =new JScrollPane(tablica);
+
         g.getCentrumMain().setLayout(new BorderLayout());
         g.getCentrumMain().add(sp,BorderLayout.CENTER);
 

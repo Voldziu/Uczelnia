@@ -7,7 +7,7 @@ public class PodwyzkaProcent implements PodwyzkaInterfejs {
     public void DajPodwyzke(PracownikUczelni p, String InPut) {
         double zmiana = Double.parseDouble(InPut);
         double pensja = p.getPensja();
-        double pensjaNowa = pensja*(1+zmiana);
+        double pensjaNowa = pensja*(1+zmiana/100);
         p.setPensja(pensjaNowa);
 
 

@@ -42,21 +42,20 @@ public class DajPodwyzke implements PodwyzkaGUI {
         g.revalidate();
         g.repaint();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
+    public void PoZatwierdzeniu(GUI g){
+        g.setPodwyzkaProcent(new JButton("Procentowo"));
+        g.setPodwyzkaStała(new JButton("Stała"));
+        g.getCentrumNaglowek().add(g.getPodwyzkaProcent());
+        g.getCentrumNaglowek().remove(0);
+        g.getCentrumNaglowek().add(g.getPodwyzkaStała());
+        JTextField tekst2 = new JTextField();
+        tekst2.setPreferredSize(new Dimension(50,30));
+        g.getListaTextow().add(tekst2);
+        g.getCentrumNaglowek().add(new JLabel("Podaj wartość:"));
+        g.getCentrumNaglowek().add(tekst2);
+        g.getPodwyzkaProcent().addActionListener(g);
+        g.getPodwyzkaStała().addActionListener(g);
 
 
 

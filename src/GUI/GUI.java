@@ -5,6 +5,8 @@ import Observers.ObslugaUczelni;
 import SkladoweUczelni.Kurs;
 import SkladoweUczelni.PracownikBD;
 import SkladoweUczelni.Student;
+import Strategia.Podwyzka.PodwyzkaProcent;
+import Strategia.Podwyzka.PodwyzkaStala;
 import Strategia.Usun.*;
 import Strategia.Wyszukaj.WyszukajKurs;
 import Strategia.Wyszukaj.WyszukajPracownika;
@@ -154,8 +156,7 @@ public class GUI extends JFrame implements ActionListener {
          Cofnij = new JButton("Cofnij");
 
          DajPodwyzke = new JButton("Daj Podwyżkę");
-         PodwyzkaProcent = new JButton("Procentowo");
-         PodwyzkaStała = new JButton("Stała kwota");
+
 
 
 
@@ -317,6 +318,7 @@ public class GUI extends JFrame implements ActionListener {
             ZwrocListeTekstow(e);
 
             new WyprintujPracownikow().Wyprintuj(this,new ArrayList<>(Arrays.asList(new WyszukajPracownikaID().WyszukajID(ListaTextow.get(0).getText(), uczelnia.getDane()))));
+            new DajPodwyzke().PoZatwierdzeniu(this);
 
 
         } else if (e.getSource()==WyjdzPodwyzka) {
@@ -325,10 +327,15 @@ public class GUI extends JFrame implements ActionListener {
 
 
         } else if (e.getSource()==PodwyzkaProcent) {
+            ZwrocListeTekstow(e);
+            new PodwyzkaProcent().DajPodwyzke(new WyszukajPracownikaID().WyszukajID(ListaTextow.get(0).getText(), uczelnia.getDane()),ListaTextow.get(1).getText());
 
 
 
         } else if (e.getSource()==PodwyzkaStała) {
+            ZwrocListeTekstow(e);
+            new PodwyzkaStala().DajPodwyzke(new WyszukajPracownikaID().WyszukajID(ListaTextow.get(0).getText(), uczelnia.getDane()),ListaTextow.get(1).getText());
+
 
 
         } else if (e.getSource()==Cofnij) {
