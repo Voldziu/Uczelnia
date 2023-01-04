@@ -14,7 +14,7 @@ public class Main {
          new GUI();
 
 
-
+//
 //        Uczelnia pwr = new Uczelnia();
 //        ObslugaUczelni gui = new ObslugaUczelni(pwr);
 //        try {

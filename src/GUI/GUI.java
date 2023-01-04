@@ -9,6 +9,8 @@ import Strategia.Usun.*;
 import Strategia.Wyszukaj.WyszukajKurs;
 import Strategia.Wyszukaj.WyszukajPracownika;
 import Strategia.Wyszukaj.WyszukajStudenta;
+import Strategia.WyszukajID.WyszukajPracownikaID;
+import StrategiaGUI.Podwyzka.DajPodwyzke;
 import StrategiaGUI.Tworzenie.TworzenieStudenta;
 import StrategiaGUI.Tworzenie.*;
 import StrategiaGUI.Wyprintuj.WyprintujKursy;
@@ -80,6 +82,14 @@ public class GUI extends JFrame implements ActionListener {
     private JButton WyszukajKurs;
 
     private JButton Cofnij;
+    private JButton DajPodwyzke;
+    private JButton zatwierdzPodwyzka;
+
+
+    private JButton WyjdzPodwyzka;
+    private  JButton PodwyzkaProcent;
+    private  JButton PodwyzkaStała;
+
 
     private JButton zatwierdz;
     private JButton zatwierdzStworzStudent;
@@ -140,7 +150,12 @@ public class GUI extends JFrame implements ActionListener {
          WyszukajStudenta = new JButton("Wyszukaj Studenta");
         WyszukajPracownika = new JButton("Wyszukaj Pracownika");
         WyszukajKurs = new JButton("Wyszukaj Kurs");
+
          Cofnij = new JButton("Cofnij");
+
+         DajPodwyzke = new JButton("Daj Podwyżkę");
+         PodwyzkaProcent = new JButton("Procentowo");
+         PodwyzkaStała = new JButton("Stała kwota");
 
 
 
@@ -170,7 +185,7 @@ public class GUI extends JFrame implements ActionListener {
 
     // Layouty
 
-         zachod.setLayout(new GridLayout(5,1));
+         zachod.setLayout(new GridLayout(6,1));
          centrum.setLayout(new BorderLayout());
 
 
@@ -178,6 +193,7 @@ public class GUI extends JFrame implements ActionListener {
 
         Stworz.addActionListener(this);
         Cofnij.addActionListener(this);
+        DajPodwyzke.addActionListener(this);
         Wyszukaj.addActionListener(this);
         Wyprintuj.addActionListener(this);
         Usun.addActionListener(this);
@@ -233,6 +249,7 @@ public class GUI extends JFrame implements ActionListener {
         zachod.add(Usun);
         zachod.add(Wyprintuj);
         zachod.add(Wyszukaj);
+        zachod.add(DajPodwyzke);
         zachod.add(Cofnij);
         centrum.add(centrumNaglowek,BorderLayout.NORTH);
         centrum.add(centrumMain,BorderLayout.CENTER);
@@ -290,6 +307,29 @@ public class GUI extends JFrame implements ActionListener {
 
         } else if (e.getSource()==StworzKurs) {
             new TworzenieKurs().Stworz(this);
+
+        } else if (e.getSource()==DajPodwyzke) {
+
+            new DajPodwyzke().DajPodwyzke(this);
+            new WyprintujPracownikow().Wyprintuj(this,uczelnia.getDane().getPracownicy());
+
+        } else if (e.getSource()==zatwierdzPodwyzka) {
+            ZwrocListeTekstow(e);
+
+            new WyprintujPracownikow().Wyprintuj(this,new ArrayList<>(Arrays.asList(new WyszukajPracownikaID().WyszukajID(ListaTextow.get(0).getText(), uczelnia.getDane()))));
+
+
+        } else if (e.getSource()==WyjdzPodwyzka) {
+            new DajPodwyzke().DajPodwyzke(this);
+            new WyprintujPracownikow().Wyprintuj(this,uczelnia.getDane().getPracownicy());
+
+
+        } else if (e.getSource()==PodwyzkaProcent) {
+
+
+
+        } else if (e.getSource()==PodwyzkaStała) {
+
 
         } else if (e.getSource()==Cofnij) {
             CofnijMenu();
@@ -522,6 +562,17 @@ public class GUI extends JFrame implements ActionListener {
         this.repaint();
     }
 
+    public void PodwyzkaMenu(){
+        CofnijMenu();
+        centrumNaglowek.setLayout(new FlowLayout());
+        centrumNaglowek.add(PodwyzkaProcent);
+        centrumNaglowek.add(PodwyzkaStała);
+
+        this.revalidate();
+        this.repaint();
+
+    }
+
 
     public ArrayList ZwrocListeTekstow(ActionEvent e){
         ((JButton)e.getSource()).setEnabled(false);
@@ -671,6 +722,46 @@ public class GUI extends JFrame implements ActionListener {
 
     //gettery
 
+
+    public JButton getDajPodwyzke() {
+        return DajPodwyzke;
+    }
+
+    public void setDajPodwyzke(JButton dajPodwyzke) {
+        DajPodwyzke = dajPodwyzke;
+    }
+
+    public JButton getZatwierdzPodwyzka() {
+        return zatwierdzPodwyzka;
+    }
+
+    public void setZatwierdzPodwyzka(JButton zatwierdzPodwyzka) {
+        this.zatwierdzPodwyzka = zatwierdzPodwyzka;
+    }
+
+    public JButton getWyjdzPodwyzka() {
+        return WyjdzPodwyzka;
+    }
+
+    public void setWyjdzPodwyzka(JButton wyjdzPodwyzka) {
+        WyjdzPodwyzka = wyjdzPodwyzka;
+    }
+
+    public JButton getPodwyzkaProcent() {
+        return PodwyzkaProcent;
+    }
+
+    public void setPodwyzkaProcent(JButton podwyzkaProcent) {
+        PodwyzkaProcent = podwyzkaProcent;
+    }
+
+    public JButton getPodwyzkaStała() {
+        return PodwyzkaStała;
+    }
+
+    public void setPodwyzkaStała(JButton podwyzkaStała) {
+        PodwyzkaStała = podwyzkaStała;
+    }
 
     public JButton getSortowanieNazwisko() {
         return sortowanieNazwisko;

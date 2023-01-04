@@ -1,8 +1,7 @@
 package Strategia.Podwyzka;
-import Strategia.Podwyzka.PodwyzkaInterface;
 import SkladoweUczelni.*;
 
-public class PodwyzkaSposob1 implements PodwyzkaInterface {
+public class PodwyzkaTerminalSposob1 implements PodwyzkaTerminal {
     @Override
     public void SposobNaPodwyzke(PracownikUczelni p) {
         System.out.println("Podwyzka1");

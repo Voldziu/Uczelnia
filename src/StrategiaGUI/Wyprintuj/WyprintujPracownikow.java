@@ -12,6 +12,7 @@ import java.util.ArrayList;
 
 public class WyprintujPracownikow implements Wyprintuj{
     public void Wyprintuj(GUI g, ArrayList a ) {
+        g.getCentrumMain().removeAll();
         String columnns[] ={"ID","Imie","Nazwisko","PESEL","Wiek","plec","stanowisko","StazPracy","pensja","Nadgodziny/Publikacje"};
 
 

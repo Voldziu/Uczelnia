@@ -31,7 +31,7 @@ public class ObslugaUczelni  implements Observer, Menu, GUIterminal {
     protected WyszukajID searchID;
     protected Usun delete;
 
-    protected PodwyzkaInterface RaiseInter;
+    protected PodwyzkaTerminal RaiseInter;
 
 
 
@@ -132,10 +132,10 @@ public class ObslugaUczelni  implements Observer, Menu, GUIterminal {
     public void wykonajStrategie(int nr_Strategii){
         switch (nr_Strategii){
             case 1:
-                RaiseInter = new PodwyzkaSposob1();
+                RaiseInter = new PodwyzkaTerminalSposob1();
                 break;
             case 2:
-                RaiseInter = new PodwyzkaSposob2();
+                RaiseInter = new PodwyzkaTerminalSposob2();
 
                 break;
         }
@@ -383,11 +383,11 @@ public class ObslugaUczelni  implements Observer, Menu, GUIterminal {
         this.delete = delete;
     }
 
-    public PodwyzkaInterface getRaiseInter() {
+    public PodwyzkaTerminal getRaiseInter() {
         return RaiseInter;
     }
 
-    public void setRaiseInter(PodwyzkaInterface raiseInter) {
+    public void setRaiseInter(PodwyzkaTerminal raiseInter) {
         RaiseInter = raiseInter;
     }
 }

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class WyprintujStudentów implements Wyprintuj{
     @Override
     public void Wyprintuj(GUI g, ArrayList a ) {
+        g.getCentrumMain().removeAll();
         String columnns[] ={"ID","Imie","Nazwisko","PESEL","Wiek","plec","index","rok","Lista Kursów (ID,Nazwa)","Erasmus","1 spn","2spn","Stacjo","NStacjo"};
 
 

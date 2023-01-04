@@ -1,5 +1,5 @@
 import SkladoweUczelni.*;
-import Strategia.Podwyzka.PodwyzkaInterface;
+import Strategia.Podwyzka.PodwyzkaTerminal;
 
 import java.util.*;
 
@@ -79,7 +79,7 @@ import java.util.*;
 public class InferfejsUzytkownika {
     private UczelniaORG Dane;
     private Scanner scan = new Scanner(System.in);
-    protected PodwyzkaInterface RaiseInter;
+    protected PodwyzkaTerminal RaiseInter;
     protected Comparator<Osoba> kompOsoba;
 
 

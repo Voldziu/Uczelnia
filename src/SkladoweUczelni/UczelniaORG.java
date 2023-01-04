@@ -1,8 +1,8 @@
 package SkladoweUczelni;
 
-import Strategia.Podwyzka.PodwyzkaInterface;
-import Strategia.Podwyzka.PodwyzkaSposob1;
-import Strategia.Podwyzka.PodwyzkaSposob2;
+import Strategia.Podwyzka.PodwyzkaTerminal;
+import Strategia.Podwyzka.PodwyzkaTerminalSposob1;
+import Strategia.Podwyzka.PodwyzkaTerminalSposob2;
 import Strategia.Komparatory.KomparatorECTSNazwisko;
 import Strategia.Komparatory.KomparatorNazwisko;
 import Strategia.Komparatory.KomparatorNazwiskoImie;
@@ -95,7 +95,7 @@ public class UczelniaORG {
     private ArrayList<String> StanowiskaA = new ArrayList<>(Arrays.asList("Referent","Specjalista","StarszySpecjalista"));
 
     protected Comparator<Osoba> kompOsoba;
-    protected PodwyzkaInterface RaiseInter;
+    protected PodwyzkaTerminal RaiseInter;
 
 
 
@@ -390,10 +390,10 @@ public class UczelniaORG {
     public void wykonajStrategie(int nr_Strategii){
         switch (nr_Strategii){
             case 1:
-                RaiseInter = new PodwyzkaSposob1();
+                RaiseInter = new PodwyzkaTerminalSposob1();
                 break;
             case 2:
-                RaiseInter = new PodwyzkaSposob2();
+                RaiseInter = new PodwyzkaTerminalSposob2();
 
                 break;
         }
@@ -470,11 +470,11 @@ public class UczelniaORG {
     //GETTERY I SETTERY
 
 
-    public PodwyzkaInterface getRaiseInter() {
+    public PodwyzkaTerminal getRaiseInter() {
         return RaiseInter;
     }
 
-    public void setRaiseInter(PodwyzkaInterface raiseInter) {
+    public void setRaiseInter(PodwyzkaTerminal raiseInter) {
         RaiseInter = raiseInter;
     }
 
