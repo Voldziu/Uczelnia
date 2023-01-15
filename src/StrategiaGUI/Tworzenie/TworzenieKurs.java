@@ -14,6 +14,7 @@ public class TworzenieKurs implements Tworzenie{
     public void Stworz(GUI g) {
         ArrayList<String> nazwy = new ArrayList<>(Arrays.asList("ID", "Nazwa Kursu","ECTS"));
         String napis = "Kurs";
+        
 
 
         g.getCentrumNaglowek().removeAll();

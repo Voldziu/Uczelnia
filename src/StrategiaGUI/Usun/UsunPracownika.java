@@ -12,9 +12,9 @@ public class UsunPracownika implements Usun{
         String napis = "Pracownika";
         String napis2= "Podaj Wartości";
         JLabel tytul = new JLabel("Usuwasz: "+napis);
-        g.setZatwierdzUsunStudent(new JButton("Zatwierdz"));
+        g.setZatwierdzUsunPracownik(new JButton("Zatwierdz"));
         g.setWyjdzUsun(new JButton("Wyjdz"));
-        g.getZatwierdzUsunStudent().addActionListener(g);
+        g.getZatwierdzUsunPracownik().addActionListener(g);
         g.getWyjdzUsun().addActionListener(g);
 
         g.setListaTextow(new ArrayList<JTextField>());
@@ -28,7 +28,7 @@ public class UsunPracownika implements Usun{
         tekst.setPreferredSize(new Dimension(150,30));
         g.getListaTextow().add(tekst);
         g.getCentrumNaglowek().add(tekst);
-        g.getCentrumNaglowek().add(g.getZatwierdzUsunStudent());
+        g.getCentrumNaglowek().add(g.getZatwierdzUsunPracownik());
         g.getCentrumNaglowek().add(g.getWyjdzUsun());
 
 

@@ -371,21 +371,15 @@ public class GUI extends JFrame implements ActionListener {
             new StrategiaGUI.Usun.UsunKurs().Usun(this);
 
 
-        } else if (e.getSource()==zatwierdzUsunStudent) {
+        } else if (e.getSource()==zatwierdzUsunKurs) {
             ZwrocListeTekstow(e);
 
             new WyprintujKursy().Wyprintuj(this, new WyszukajKurs().Wyszukaj(ListaTextow.get(0).getText(), uczelnia.getDane()));
             new UsunKurs().Usun(ListaTextow.get(0).getText(), uczelnia.getDane());
 
 
-        }   else if (e.getSource()==UsunKurs) {
-
-
-        } else if (e.getSource() == UsunPracownika) {
-
-
-
-        } else if (e.getSource()==Wyszukaj) {
+        }
+        else if (e.getSource()==Wyszukaj) {
             WyszukajMenu();
 
 
@@ -478,16 +472,19 @@ public class GUI extends JFrame implements ActionListener {
 
             
         } else if (e.getSource()==zatwierdzStworzA) {
-            ZwrocListeTekstow(e);
-            uczelnia.getDane().Add(new PracownikBD(Integer.parseInt((String) ZwrocListeTekstow(e).get(0)),(String) ZwrocListeTekstow(e).get(1),(String) ZwrocListeTekstow(e).get(2),(String)ZwrocListeTekstow(e).get(3),Integer.parseInt((String) ZwrocListeTekstow(e).get(4)),(String)ZwrocListeTekstow(e).get(5),(String)ZwrocListeTekstow(e).get(6), Double.parseDouble((String) ZwrocListeTekstow(e).get(7)), Double.parseDouble((String) ZwrocListeTekstow(e).get(8)),Integer.parseInt((String) ZwrocListeTekstow(e).get(9))));
-
-            System.out.println(ZwrocListeTekstow(e));
+//            ZwrocListeTekstow(e);
+//            CzyDobreStanowisko(2,e);
+//            uczelnia.getDane().Add(new PracownikBD(Integer.parseInt((String) ZwrocListeTekstow(e).get(0)),(String) ZwrocListeTekstow(e).get(1),(String) ZwrocListeTekstow(e).get(2),(String)ZwrocListeTekstow(e).get(3),Integer.parseInt((String) ZwrocListeTekstow(e).get(4)),(String)ZwrocListeTekstow(e).get(5),(String)ZwrocListeTekstow(e).get(6), Double.parseDouble((String) ZwrocListeTekstow(e).get(7)), Double.parseDouble((String) ZwrocListeTekstow(e).get(8)),Integer.parseInt((String) ZwrocListeTekstow(e).get(9))));
+//
+//            System.out.println(ZwrocListeTekstow(e));
+            new TworzeniePracownikA().StworzAlgorytmy(this,CzyDobreStanowisko(2,e),e);
 
 
 
 
         }else if (e.getSource()==zatwierdzStworzBD) {
             ZwrocListeTekstow(e);
+            CzyDobreStanowisko(1,e);
             uczelnia.getDane().Add(new PracownikBD(Integer.parseInt((String) ZwrocListeTekstow(e).get(0)),(String) ZwrocListeTekstow(e).get(1),(String) ZwrocListeTekstow(e).get(2),(String)ZwrocListeTekstow(e).get(3),Integer.parseInt((String) ZwrocListeTekstow(e).get(4)),(String)ZwrocListeTekstow(e).get(5),(String)ZwrocListeTekstow(e).get(6), Double.parseDouble((String) ZwrocListeTekstow(e).get(7)), Double.parseDouble((String) ZwrocListeTekstow(e).get(8)),Integer.parseInt((String) ZwrocListeTekstow(e).get(9))));
 
             System.out.println(ZwrocListeTekstow(e));
@@ -506,6 +503,9 @@ public class GUI extends JFrame implements ActionListener {
 
         }else if (e.getSource()== wyjdzStworz) {
             StworzMenu();
+        } else if (e.getSource()==wyjdzUsun) {
+            UsunMenu();
+
         }
 
 
@@ -635,6 +635,38 @@ public class GUI extends JFrame implements ActionListener {
         wyprintujOsoby.Wyprintuj(this,a);
         wyprintujOsoby.AllWyprintuj(this);
     }
+
+
+    public boolean CzyDobreStanowisko(int wyborTypu, ActionEvent e){
+        ArrayList<String> Stanowiska;
+        switch (wyborTypu){
+            case 1:
+            Stanowiska = new ArrayList<>(Arrays.asList("asystent", "adiunkt", "profesor nadzwyczajny", "profesor zwyczajny", "wykladowca"));
+            if (Stanowiska.contains(ZwrocListeTekstow(e).get(6).toString().toLowerCase())) {
+                return true;
+
+
+            } else {
+                return false;
+            }
+            case 2:
+                Stanowiska = new ArrayList<>(Arrays.asList("referent","specjalista","starszy specjalista"));
+                System.out.println(ZwrocListeTekstow(e).get(6));
+                if(Stanowiska.contains(ZwrocListeTekstow(e).get(6).toString().toLowerCase())){
+                    return true;
+                } else {
+                    return false;
+                }
+
+
+            default:
+                return false;
+        }
+
+    }
+
+
+
 
 
 
