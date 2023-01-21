@@ -8,6 +8,7 @@ import SkladoweUczelni.Student;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class WyprintujStudentów implements Wyprintuj{
     @Override
@@ -52,6 +53,11 @@ public class WyprintujStudentów implements Wyprintuj{
 
         g.getCentrumMain().revalidate();
         g.getCentrumMain().repaint();
+    }
+
+    public ArrayList<Student> Hashuj(ArrayList<Student> a){
+        HashSet<Student> StudentSet = new HashSet<Student>(a);
+        return new ArrayList<Student>(StudentSet);
     }
 
 

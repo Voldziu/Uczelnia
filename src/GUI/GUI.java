@@ -477,6 +477,9 @@ public class GUI extends JFrame implements ActionListener {
             new WyprintujPracownikow().Wyprintuj(this,new WyprintujPracownikow().Hashuj(uczelnia.getDane().getPracownicy()));
 
 
+        } else if (e.getSource() == HashujStudenta) {
+            new WyprintujStudentów().Wyprintuj(this,new WyprintujStudentów().Hashuj(uczelnia.getDane().getStudenci()));
+
         } else if (e.getSource()==zatwierdzStworzStudent) {
             ZwrocListeTekstow(e);
             ZwrocCheckBoxy(ListaCheckBoxow);

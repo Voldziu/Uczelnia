@@ -15,13 +15,13 @@ public class WyprintujKursy implements Wyprintuj{
     @Override
     public void Wyprintuj(GUI g, ArrayList a ) {
         g.getCentrumMain().removeAll();
-        String columnns[] ={"ID","Nazwa Kursu","Nazwisko","ECTS"};
+        String columnns[] ={"ID","Nazwa Kursu","ID, Nazwisko","ECTS"};
         String[][] dane = new String[a.size()][columnns.length];
         for (int i = 0; i <a.size() ; i++) {
             Kurs element = (Kurs)a.get(i);
             dane[i][0]= String.valueOf(element.getID());
             dane[i][1]= String.valueOf(element.getNazwaKursu());
-            dane[i][2]=String.valueOf(element.getProwadzacy().getNazwisko());
+            dane[i][2]=String.valueOf(element.getProwadzacy().getID())+" "+String.valueOf(element.getProwadzacy().getNazwisko());
             dane[i][3]=String.valueOf(element.getECTS());
         }
         JTable tablica = new JTable(dane,columnns);
@@ -70,7 +70,7 @@ public class WyprintujKursy implements Wyprintuj{
         g.setWyjdzWyprintuj(Wyjdz);
         g.setHashujKurs(Hashuj);
         WyjdzHashuj.add(Wyjdz);
-        WyjdzHashuj.add(Hashuj);
+//        WyjdzHashuj.add(Hashuj);
 
 
 

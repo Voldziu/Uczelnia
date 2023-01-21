@@ -12,6 +12,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 
 public class WyprintujOsoby implements Wyprintuj{
     protected Comparator<Osoba> osobaComparator;
@@ -64,6 +65,9 @@ public class WyprintujOsoby implements Wyprintuj{
 
     }
 
+
+
+
     public void AllWyprintuj(GUI g){
         g.getCentrumNaglowek().removeAll();
         g.getCentrumNaglowek().setLayout(new BorderLayout());
@@ -85,7 +89,7 @@ public class WyprintujOsoby implements Wyprintuj{
         g.setWyjdzWyprintuj(Wyjdz);
         g.setHashujOsoby(Hashuj);
         WyjdzHashuj.add(Wyjdz);
-        WyjdzHashuj.add(Hashuj);
+//        WyjdzHashuj.add(Hashuj);
 
 
 
