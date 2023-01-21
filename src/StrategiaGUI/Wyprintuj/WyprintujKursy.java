@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Random;
 
 public class WyprintujKursy implements Wyprintuj{
@@ -50,7 +51,36 @@ public class WyprintujKursy implements Wyprintuj{
     }
     public void AllWyprintuj(GUI g){
         g.getCentrumNaglowek().removeAll();
-        g.getCentrumNaglowek().add(new JLabel("Kursy"));
+        g.getCentrumNaglowek().setLayout(new BorderLayout());
+        JPanel panelgura = new JPanel();
+        panelgura.add(new JLabel("Kursy"));
+
+        g.getCentrumNaglowek().add(panelgura,BorderLayout.CENTER);
+
+        JPanel WyjdzHashuj = new JPanel();
+        WyjdzHashuj.setLayout(new GridLayout(2,1));
+        g.getCentrumNaglowek().add(WyjdzHashuj,BorderLayout.EAST);
+
+        JButton Wyjdz = new JButton("Wyjdz");
+        JButton Hashuj = new JButton("Hashuj");
+
+
+
+
+        g.setWyjdzWyprintuj(Wyjdz);
+        g.setHashujKurs(Hashuj);
+        WyjdzHashuj.add(Wyjdz);
+        WyjdzHashuj.add(Hashuj);
+
+
+
+        g.getWyjdzWyprintuj().addActionListener(g);
+        g.getHashujKurs().addActionListener(g);
+
+
+
+
+
         JPanel PanelPrawo = new JPanel();
         g.setSortowanieECTSNazwisko(new JButton("Sortowanie ECTS, Nazwisko"));
 

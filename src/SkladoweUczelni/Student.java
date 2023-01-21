@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Student extends Osoba {
 
     //Skladowe
+    private static final long serialVersionUID = 2255387357392705765L;
 
 
 
@@ -115,4 +116,22 @@ public class Student extends Osoba {
                 CzyNiestacjonarne + "\t"
                 );
     }
+
+    @Override
+    public int hashCode() {
+
+        return this.getIndex();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        Student other = (Student) obj;
+        if(Index==(other.getIndex())) {
+            return true;
+        } else{
+            return false;
+        }
+    }
+
+
 }

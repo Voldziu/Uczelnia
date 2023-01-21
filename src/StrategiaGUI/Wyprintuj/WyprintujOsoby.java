@@ -66,7 +66,38 @@ public class WyprintujOsoby implements Wyprintuj{
 
     public void AllWyprintuj(GUI g){
         g.getCentrumNaglowek().removeAll();
-        g.getCentrumNaglowek().add(new JLabel("Osoby"));
+        g.getCentrumNaglowek().setLayout(new BorderLayout());
+        JPanel panelgura = new JPanel();
+        panelgura.add(new JLabel("Osoby"));
+
+        g.getCentrumNaglowek().add(panelgura,BorderLayout.CENTER);
+
+        JPanel WyjdzHashuj = new JPanel();
+        WyjdzHashuj.setLayout(new GridLayout(2,1));
+        g.getCentrumNaglowek().add(WyjdzHashuj,BorderLayout.EAST);
+
+        JButton Wyjdz = new JButton("Wyjdz");
+        JButton Hashuj = new JButton("Hashuj");
+
+
+
+
+        g.setWyjdzWyprintuj(Wyjdz);
+        g.setHashujOsoby(Hashuj);
+        WyjdzHashuj.add(Wyjdz);
+        WyjdzHashuj.add(Hashuj);
+
+
+
+        g.getWyjdzWyprintuj().addActionListener(g);
+        g.getHashujOsoby().addActionListener(g);
+
+
+
+
+
+
+
         JPanel PanelPrawo = new JPanel();
         g.setSortowanieNazwisko(new JButton("Sortowanie Nazwisko"));
         g.setSortowanieNazwiskoImie(new JButton("Sortowanie Nazwisko, Imie"));

@@ -55,7 +55,7 @@ public class GUI extends JFrame implements ActionListener {
     private JButton wyjdzStworz;
     private JButton wyjdzWyszukaj;
     private JButton wyjdzUsun;
-    private JButton wyjdzWprintuj;
+    private JButton wyjdzWyprintuj;
 
     private JButton Stworz;
 
@@ -110,6 +110,12 @@ public class GUI extends JFrame implements ActionListener {
     private JButton zatwierdzWyprintujPracownik;
     private JButton zatwierdzWyprintujKurs;
     private JButton zatwierdzWyprintujOsoby;
+
+    private JButton HashujStudenta;
+    private JButton HashujPracownika;
+    private JButton HashujKurs;
+    private JButton HashujOsoby;
+
 
 
 
@@ -212,6 +218,7 @@ public class GUI extends JFrame implements ActionListener {
         UsunStudenta.addActionListener(this);
         UsunPracownika.addActionListener(this);
         UsunKurs.addActionListener(this);
+        
 
 
 
@@ -430,6 +437,9 @@ public class GUI extends JFrame implements ActionListener {
             new WyprintujKursy().Wyprintuj(this,uczelnia.getDane().getKursy());
             new WyprintujKursy().AllWyprintuj(this);
 
+        } else if (e.getSource() == wyjdzWyprintuj) {
+            WyprintujMenu();
+
         } else if (e.getSource()==sortowanieECTSNazwisko) {
             WyprintujKursy wyprintujKursy = new WyprintujKursy();
             System.out.println("1");
@@ -455,11 +465,17 @@ public class GUI extends JFrame implements ActionListener {
             SortowanieOsob(3);
 
         } else if (e.getSource()== WyprintujStudenta) {
+            new WyprintujStudentów().AllWyprintuj(this);
             new WyprintujStudentów().Wyprintuj(this,uczelnia.getDane().getStudenci());
 
 
         } else if (e.getSource()==WyprintujPracownika) {
+            new WyprintujPracownikow().AllWyprintuj(this);
             new WyprintujPracownikow().Wyprintuj(this,uczelnia.getDane().getPracownicy());
+
+        } else if (e.getSource()==HashujPracownika) {
+            new WyprintujPracownikow().Wyprintuj(this,new WyprintujPracownikow().Hashuj(uczelnia.getDane().getPracownicy()));
+
 
         } else if (e.getSource()==zatwierdzStworzStudent) {
             ZwrocListeTekstow(e);
@@ -483,11 +499,7 @@ public class GUI extends JFrame implements ActionListener {
 
 
         }else if (e.getSource()==zatwierdzStworzBD) {
-            ZwrocListeTekstow(e);
-            CzyDobreStanowisko(1,e);
-            uczelnia.getDane().Add(new PracownikBD(Integer.parseInt((String) ZwrocListeTekstow(e).get(0)),(String) ZwrocListeTekstow(e).get(1),(String) ZwrocListeTekstow(e).get(2),(String)ZwrocListeTekstow(e).get(3),Integer.parseInt((String) ZwrocListeTekstow(e).get(4)),(String)ZwrocListeTekstow(e).get(5),(String)ZwrocListeTekstow(e).get(6), Double.parseDouble((String) ZwrocListeTekstow(e).get(7)), Double.parseDouble((String) ZwrocListeTekstow(e).get(8)),Integer.parseInt((String) ZwrocListeTekstow(e).get(9))));
-
-            System.out.println(ZwrocListeTekstow(e));
+            new TworzeniePracownikBD().StworzAlgorytmy(this,CzyDobreStanowisko(1,e),e);
 
 
 
@@ -762,6 +774,38 @@ public class GUI extends JFrame implements ActionListener {
     //gettery
 
 
+    public JButton getHashujStudenta() {
+        return HashujStudenta;
+    }
+
+    public void setHashujStudenta(JButton hashujStudenta) {
+        HashujStudenta = hashujStudenta;
+    }
+
+    public JButton getHashujPracownika() {
+        return HashujPracownika;
+    }
+
+    public void setHashujPracownika(JButton hashujPracownika) {
+        HashujPracownika = hashujPracownika;
+    }
+
+    public JButton getHashujKurs() {
+        return HashujKurs;
+    }
+
+    public void setHashujKurs(JButton hashujKurs) {
+        HashujKurs = hashujKurs;
+    }
+
+    public JButton getHashujOsoby() {
+        return HashujOsoby;
+    }
+
+    public void setHashujOsoby(JButton hashujOsoby) {
+        HashujOsoby = hashujOsoby;
+    }
+
     public JButton getDajPodwyzke() {
         return DajPodwyzke;
     }
@@ -882,12 +926,12 @@ public class GUI extends JFrame implements ActionListener {
         this.wyjdzUsun = wyjdzUsun;
     }
 
-    public JButton getWyjdzWprintuj() {
-        return wyjdzWprintuj;
+    public JButton getWyjdzWyprintuj() {
+        return wyjdzWyprintuj;
     }
 
-    public void setWyjdzWprintuj(JButton wyjdzWprintuj) {
-        this.wyjdzWprintuj = wyjdzWprintuj;
+    public void setWyjdzWyprintuj(JButton wyjdzWyprintuj) {
+        this.wyjdzWyprintuj = wyjdzWyprintuj;
     }
 
     public JButton getZatwierdzUsunKurs() {

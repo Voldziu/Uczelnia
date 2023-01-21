@@ -9,6 +9,7 @@ import SkladoweUczelni.PracownikUczelni;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class WyprintujPracownikow implements Wyprintuj{
     public void Wyprintuj(GUI g, ArrayList a ) {
@@ -46,5 +47,46 @@ public class WyprintujPracownikow implements Wyprintuj{
 
         g.getCentrumMain().revalidate();
         g.getCentrumMain().repaint();
+    }
+
+    public ArrayList Hashuj(ArrayList a){
+        HashSet<PracownikUczelni> PracownicySet = new HashSet<PracownikUczelni>(a);
+        return new ArrayList<PracownikUczelni>(PracownicySet);
+
+    }
+
+    public void AllWyprintuj(GUI g){
+        g.getCentrumNaglowek().removeAll();
+        g.getCentrumNaglowek().setLayout(new BorderLayout());
+        JPanel panelgura = new JPanel();
+        panelgura.add(new JLabel("Pracownicy"));
+
+        g.getCentrumNaglowek().add(panelgura,BorderLayout.CENTER);
+
+        JPanel WyjdzHashuj = new JPanel();
+        WyjdzHashuj.setLayout(new GridLayout(2,1));
+        g.getCentrumNaglowek().add(WyjdzHashuj,BorderLayout.EAST);
+
+        JButton Wyjdz = new JButton("Wyjdz");
+        JButton Hashuj = new JButton("Hashuj");
+
+
+
+
+        g.setWyjdzWyprintuj(Wyjdz);
+        g.setHashujPracownika(Hashuj);
+        WyjdzHashuj.add(Wyjdz);
+        WyjdzHashuj.add(Hashuj);
+
+
+
+        g.getWyjdzWyprintuj().addActionListener(g);
+        g.getHashujPracownika().addActionListener(g);
+
+
+
+        g.revalidate();
+        g.repaint();
+
     }
 }

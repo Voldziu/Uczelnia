@@ -4,9 +4,11 @@ import java.io.Serializable;
 
 public class Kurs extends Creation implements Serializable  {
 
-    private static final long serialVersionUID = 5567566049323461550L;
+
 
     //Skladowe
+
+    private static final long serialVersionUID = 5567566049323461550L;
 
     private int ID;
     private  String NazwaKursu;

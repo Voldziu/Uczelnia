@@ -164,6 +164,8 @@ public class Uczelnia implements ObservableClass{
             setStudenci(GetStudenci());
 
         } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+
             zapiszPuste();
         }
     }

@@ -54,4 +54,40 @@ public class WyprintujStudentów implements Wyprintuj{
         g.getCentrumMain().repaint();
     }
 
+
+    public void AllWyprintuj(GUI g){
+        g.getCentrumNaglowek().removeAll();
+        g.getCentrumNaglowek().setLayout(new BorderLayout());
+        JPanel panelgura = new JPanel();
+        panelgura.add(new JLabel("Studenci"));
+
+        g.getCentrumNaglowek().add(panelgura,BorderLayout.CENTER);
+
+        JPanel WyjdzHashuj = new JPanel();
+        WyjdzHashuj.setLayout(new GridLayout(2,1));
+        g.getCentrumNaglowek().add(WyjdzHashuj,BorderLayout.EAST);
+
+        JButton Wyjdz = new JButton("Wyjdz");
+        JButton Hashuj = new JButton("Hashuj");
+
+
+
+
+        g.setWyjdzWyprintuj(Wyjdz);
+        g.setHashujStudenta(Hashuj);
+        WyjdzHashuj.add(Wyjdz);
+        WyjdzHashuj.add(Hashuj);
+
+
+
+        g.getWyjdzWyprintuj().addActionListener(g);
+        g.getHashujStudenta().addActionListener(g);
+
+
+
+        g.revalidate();
+        g.repaint();
+
+    }
+
 }

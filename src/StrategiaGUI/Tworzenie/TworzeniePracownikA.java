@@ -1,6 +1,7 @@
 package StrategiaGUI.Tworzenie;
 
 import GUI.GUI;
+import SkladoweUczelni.PracownikA;
 import SkladoweUczelni.PracownikBD;
 
 import javax.swing.*;
@@ -87,7 +88,7 @@ public class TworzeniePracownikA implements Tworzenie{
             g.getCentrumMain().add(PanelPrawus,BorderLayout.EAST);
 
 
-            g.getUczelnia().getDane().Add(new PracownikBD(Integer.parseInt((String) g.ZwrocListeTekstow(e).get(0)),(String) g.ZwrocListeTekstow(e).get(1),(String) g.ZwrocListeTekstow(e).get(2),(String)g.ZwrocListeTekstow(e).get(3),Integer.parseInt((String) g.ZwrocListeTekstow(e).get(4)),(String)g.ZwrocListeTekstow(e).get(5),(String)g.ZwrocListeTekstow(e).get(6), Double.parseDouble((String) g.ZwrocListeTekstow(e).get(7)), Double.parseDouble((String) g.ZwrocListeTekstow(e).get(8)),Integer.parseInt((String) g.ZwrocListeTekstow(e).get(9))));
+            g.getUczelnia().getDane().Add(new PracownikA(Integer.parseInt((String) g.ZwrocListeTekstow(e).get(0)),(String) g.ZwrocListeTekstow(e).get(1),(String) g.ZwrocListeTekstow(e).get(2),(String)g.ZwrocListeTekstow(e).get(3),Integer.parseInt((String) g.ZwrocListeTekstow(e).get(4)),(String)g.ZwrocListeTekstow(e).get(5),(String)g.ZwrocListeTekstow(e).get(6), Double.parseDouble((String) g.ZwrocListeTekstow(e).get(7)), Double.parseDouble((String) g.ZwrocListeTekstow(e).get(8)),Integer.parseInt((String) g.ZwrocListeTekstow(e).get(9))));
 
             System.out.println(g.ZwrocListeTekstow(e));
 

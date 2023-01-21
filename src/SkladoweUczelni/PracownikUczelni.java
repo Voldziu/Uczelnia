@@ -4,6 +4,8 @@ public abstract class PracownikUczelni extends Osoba {
 
     //Skladowe
 
+    private static final long serialVersionUID = 5713886696566790870L;
+
     private String Stanowisko;
     private double StazPracy;
     private double Pensja;
@@ -54,6 +56,18 @@ public abstract class PracownikUczelni extends Osoba {
                Stanowisko +  "\t"+
                 StazPracy + "\t"+
                 Pensja + "\t");
+
+    }
+
+    @Override
+    public int hashCode() {
+        return this.getPESEL().hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        PracownikUczelni other = (PracownikUczelni) obj;
+        return this.getPESEL().equals(other.getPESEL());
 
     }
 }

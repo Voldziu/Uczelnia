@@ -6,8 +6,8 @@ import java.io.Serializable;
 public abstract class  Osoba  extends Creation implements Serializable {
 
     //Skladowe
-    @Serial
     private static final long serialVersionUID = 5567566049324461550L;
+
     private int ID;
     private  String Imie;
     private  String Nazwisko;
@@ -84,4 +84,6 @@ public abstract class  Osoba  extends Creation implements Serializable {
         return (ID +"\t"+Imie + "\t" + Nazwisko + "\t" + PESEL + "\t" + Wiek + "\t" + Plec );
 
     }
+
+
 }
