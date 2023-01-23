@@ -1,5 +1,6 @@
 package Strategia.Usun;
 
+import SkladoweUczelni.Osoba;
 import Strategia.Wyszukaj.WyszukajPracownika;
 import Observable.Uczelnia;
 import SkladoweUczelni.Kurs;
@@ -14,8 +15,12 @@ public class UsunPracownika implements Usun {
     public void Usun(String InPut, Uczelnia dane) {
         System.out.println("Wpisz szukane: ");
         ArrayList<PracownikUczelni> UsuwaniP = new WyszukajPracownika().Wyszukaj(InPut,dane);
+
+
+
         System.out.println("Usunąłeś poniższych pracowników: ");
         dane.Wyprintuj(UsuwaniP);
+
         if(UsuwaniP.isEmpty()){
             System.out.println("Brak");
         }

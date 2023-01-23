@@ -8,12 +8,11 @@ public class Student extends Osoba {
     private static final long serialVersionUID = 2255387357392705765L;
 
 
-
     private int Index;
     private int Rok;
     private ArrayList<Kurs> ListaKursow;
-    private  boolean CzyErasmus;
-    private  boolean CzyPierwszyStopien;
+    private boolean CzyErasmus;
+    private boolean CzyPierwszyStopien;
     private boolean CzyDrugiStopien;
     private boolean CzyStacjonarne;
     private boolean CzyNiestacjonarne;
@@ -23,7 +22,7 @@ public class Student extends Osoba {
 
 
     public Student(int ID, String imie, String nazwisko, String PESEL, int wiek, String plec, int index, int rok, ArrayList<Kurs> listaKursow, boolean czyErasmus, boolean czyPierwszyStopien, boolean czyDrugiStopien, boolean czyStacjonarne, boolean czyNiestacjonarne) {
-        super(ID,imie, nazwisko, PESEL, wiek, plec);
+        super(ID, imie, nazwisko, PESEL, wiek, plec);
         Index = index;
         Rok = rok;
         ListaKursow = listaKursow;
@@ -105,16 +104,16 @@ public class Student extends Osoba {
 
     @Override
     public String toString() {
-        return ( super.toString()+ "\t"+
-                  Index + "\t"+
-                 Rok + "\t"+
-                 ListaKursow +"\t"+
-                 CzyErasmus + "\t"+
-                 CzyPierwszyStopien +"\t"+
-                 CzyDrugiStopien + "\t"+
-                CzyStacjonarne + "\t"+
+        return (super.toString() + "\t" +
+                Index + "\t" +
+                Rok + "\t" +
+                ListaKursow + "\t" +
+                CzyErasmus + "\t" +
+                CzyPierwszyStopien + "\t" +
+                CzyDrugiStopien + "\t" +
+                CzyStacjonarne + "\t" +
                 CzyNiestacjonarne + "\t"
-                );
+        );
     }
 
     @Override
@@ -125,13 +124,24 @@ public class Student extends Osoba {
 
     @Override
     public boolean equals(Object obj) {
-        Student other = (Student) obj;
-        if(Index==(other.getIndex())) {
-            return true;
-        } else{
-            return false;
+        if (obj instanceof Student) {
+            Student other = (Student) obj;
+            if (this.getIndex() == (other.getIndex())) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+        return false;
         }
     }
+
+
+
+
+
+
+
 
 
 }

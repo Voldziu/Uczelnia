@@ -66,8 +66,17 @@ public abstract class PracownikUczelni extends Osoba {
 
     @Override
     public boolean equals(Object obj) {
-        PracownikUczelni other = (PracownikUczelni) obj;
-        return this.getPESEL().equals(other.getPESEL());
+        if(obj instanceof PracownikUczelni) {
+            PracownikUczelni other = (PracownikUczelni) obj;
+            if(this.getPESEL().equals(other.getPESEL())){
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+
 
     }
 }

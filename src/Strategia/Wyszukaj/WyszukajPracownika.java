@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public class WyszukajPracownika implements Wyszukaj {
     @Override
-    public ArrayList<PracownikUczelni> Wyszukaj(String InPut, Uczelnia dane) {
-        ArrayList<PracownikUczelni> Wyszukani = new ArrayList<PracownikUczelni>();
+    public ArrayList Wyszukaj(String InPut, Uczelnia dane) {
+        ArrayList Wyszukani = new ArrayList();
         for (int i = 0; i <dane.getPracownicy().size() ; i++) {
             PracownikUczelni obecnyPracownik = dane.getPracownicy().get(i);
 
